@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { PropsWithChildren } from "react";
-import { Roboto } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "./_components";
 
-const inter = Roboto({ subsets: ["latin"], weight: ["300", "400", "700", "900"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => (
   <html lang="en">
-    <body className={inter.className}>{children}</body>
+    <body className={inter.className}>
+      <Navbar />
+      {children}
+    </body>
   </html>
 );
 
