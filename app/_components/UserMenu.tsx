@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MenuIcon } from "lucide-react";
+import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import {
   DropdownMenu,
@@ -13,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const UserMenu = async () => {
-  const user = { id: 1 }; // await getUser();
+  const user = false; // await getUser();
 
   return (
     <DropdownMenu>
@@ -34,6 +35,7 @@ const UserMenu = async () => {
         {user ? (
           <>
             <DropdownMenuItem>
+              {/* action={createHomewithId} */}
               <form className="w-full">
                 <button type="submit" className="w-full text-start">
                   Airbnb your Home
@@ -56,12 +58,18 @@ const UserMenu = async () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem>
+              <LogoutLink className="w-full">Logout</LogoutLink>
+            </DropdownMenuItem>
           </>
         ) : (
           <>
-            <DropdownMenuItem>RegisterLink</DropdownMenuItem>
-            <DropdownMenuItem>LoginLink</DropdownMenuItem>
+            <DropdownMenuItem>
+              <RegisterLink className="w-full">Register</RegisterLink>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <LoginLink className="w-full">Login</LoginLink>
+            </DropdownMenuItem>
           </>
         )}
       </DropdownMenuContent>
