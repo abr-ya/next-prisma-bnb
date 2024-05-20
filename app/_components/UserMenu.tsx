@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MenuIcon } from "lucide-react";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import {
@@ -14,7 +15,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const UserMenu = async () => {
-  const user = false; // await getUser();
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  const avaSrc = user?.picture || "/no-avatar.jpg";
 
   return (
     <DropdownMenu>
@@ -22,8 +25,7 @@ const UserMenu = async () => {
         <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
           <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
           <Image
-            // todo: user logo
-            src="/no-avatar.jpg"
+            src={avaSrc}
             className="rounded-full h-8 w-8 hidden lg:block"
             alt="Image of the user"
             width={100}
