@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { CategoryFilter } from "./_components";
 
 const Home = () => (
-  <main className="flex min-h-screen flex-col items-center p-5">
+  <div className="container mx-auto px-5 lg:px-10">
     <h1 className="text-2xl">Hello, Next 14 + Tailwind CSS!</h1>
+    <CategoryFilter />
     <Button>Click Me</Button>
-  </main>
+  </div>
 );
 
 export default Home;
