@@ -13,11 +13,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { createHomeAction } from "../actions";
 
 const UserMenu = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   const avaSrc = user?.picture || "/no-avatar.jpg";
+  const userId = user?.id;
+
+  const startHomeCreating = createHomeAction.bind(null, { userId: userId as string });
 
   return (
     <DropdownMenu>
@@ -37,12 +41,15 @@ const UserMenu = async () => {
         {user ? (
           <>
             <DropdownMenuItem>
-              {/* action={createHomewithId} */}
-              <form className="w-full">
-                <button type="submit" className="w-full text-start">
-                  Airbnb your Home
-                </button>
-              </form>
+              {userId ? (
+                <form className="w-full" action={startHomeCreating}>
+                  <button type="submit" className="w-full text-start">
+                    Airbnb your Home
+                  </button>
+                </form>
+              ) : (
+                <>Disabled == not UserID</>
+              )}
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/my-homes" className="w-full">
