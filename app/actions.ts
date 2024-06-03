@@ -78,3 +78,23 @@ export const saveTextAction = async (formData: FormData) => {
 
   return redirect(`/new/${homeId}/step-3`);
 };
+
+export const saveCountryAction = async (formData: FormData) => {
+  // todo: get it another way?
+  const homeId = formData.get("homeId") as string;
+  const countryValue = formData.get("countryValue") as string;
+
+  console.log(`Add ${countryValue} to ${homeId}`);
+
+  // const data = await prisma.home.update({
+  //   where: {
+  //     id: homeId,
+  //   },
+  //   data: {
+  //     addedLoaction: true,
+  //     country: countryValue,
+  //   },
+  // });
+
+  return redirect("/");
+};
