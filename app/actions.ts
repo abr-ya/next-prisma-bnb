@@ -82,9 +82,9 @@ export const saveTextAction = async (formData: FormData) => {
 export const saveCountryAction = async (formData: FormData) => {
   // todo: get it another way?
   const homeId = formData.get("homeId") as string;
-  const countryValue = formData.get("countryValue") as string;
+  const country = formData.get("country") as string;
 
-  console.log(`Add ${countryValue} to ${homeId}`);
+  console.log(`Add ${country} to ${homeId}`);
 
   // const data = await prisma.home.update({
   //   where: {
@@ -92,7 +92,7 @@ export const saveCountryAction = async (formData: FormData) => {
   //   },
   //   data: {
   //     addedLoaction: true,
-  //     country: countryValue,
+  //     country,
   //   },
   // });
 
