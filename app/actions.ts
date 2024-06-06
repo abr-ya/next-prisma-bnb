@@ -33,8 +33,8 @@ export const saveCategoryAction = async (formData: FormData) => {
   //     id: homeId,
   //   },
   //   data: {
-  //     categoryName: categoryName,
-  //     addedCategory: true,
+  //     category: categoryName,
+  //     hasStep1: true,
   //   },
   // });
   // console.log("Home updated:", data);
@@ -59,14 +59,16 @@ export const saveTextAction = async (formData: FormData) => {
 
   // prepare data
   const updateData = {
-    title: title,
-    description: description,
+    title,
+    description,
     price: Number(price),
-    bedrooms: roomNumber,
-    bathrooms: bathroomsNumber,
-    guests: guestNumber,
+
+    guestCount: Number(guestNumber),
+    roomCount: Number(roomNumber),
+    bathroomCount: Number(bathroomsNumber),
+
     photo: imageData?.path,
-    addedDescription: true,
+    hasStep2: true,
   };
 
   console.log(`Add to ${homeId} data: ${updateData}`);
@@ -83,16 +85,20 @@ export const saveCountryAction = async (formData: FormData) => {
   // todo: get it another way?
   const homeId = formData.get("homeId") as string;
   const country = formData.get("country") as string;
+  const pinLat = formData.get("pinLat") as string;
+  const pinLon = formData.get("pinLon") as string;
 
-  console.log(`Add ${country} to ${homeId}`);
+  console.log(`Add ${country} (${pinLat}, ${pinLon}) to ${homeId}`);
 
   // const data = await prisma.home.update({
   //   where: {
   //     id: homeId,
   //   },
   //   data: {
-  //     addedLoaction: true,
   //     country,
+  //     pinLat,
+  //     pinLon,
+  //     hasStep3: true,
   //   },
   // });
 

@@ -18,6 +18,7 @@ import { createHomeAction } from "../actions";
 const UserMenu = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+
   const avaSrc = user?.picture || "/no-avatar.jpg";
   const userId = user?.id;
 
@@ -30,7 +31,7 @@ const UserMenu = async () => {
           <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
           <Image
             src={avaSrc}
-            className="rounded-full h-8 w-8 hidden lg:block"
+            className="rounded-full h-8 w-8 hidden md:block"
             alt="Image of the user"
             width={100}
             height={100}

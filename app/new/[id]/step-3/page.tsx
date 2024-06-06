@@ -22,11 +22,22 @@ interface IStep3Page {
 }
 
 const Step3Page: FC<IStep3Page> = ({ params }) => {
-  const { getAllCountries } = useCountries();
+  const { getAllCountries, getCountryByValue } = useCountries();
+  const [lat, setLat] = useState(52.5);
+  const [lng, setLng] = useState(0);
   const [country, setCountry] = useState("");
 
   const loading = () => <Skeleton className="h-[50vh] w-full" />;
   const LazyMap = dynamic(() => import("@/app/_components/DemoMap"), { ssr: false, loading });
+
+  const SelectHandler = (value: string) => {
+    const latLng = getCountryByValue(value)?.latLang;
+    if (latLng) {
+      setLat(latLng[0]);
+      setLng(latLng[1]);
+    }
+    setCountry(value);
+  };
 
   return (
     <>
@@ -35,9 +46,11 @@ const Step3Page: FC<IStep3Page> = ({ params }) => {
       <form action={saveCountryAction}>
         <input type="hidden" name="homeId" value={params.id} />
         <input type="hidden" name="country" value={country} />
+        <input type="hidden" name="pinLat" value={lat} />
+        <input type="hidden" name="pinLon" value={lng} />
         <div className="w-3/5 mx-auto mb-36">
           <div className="mb-5">
-            <Select required onValueChange={(value) => setCountry(value)}>
+            <Select required onValueChange={SelectHandler}>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select a Country" />
               </SelectTrigger>
@@ -54,7 +67,12 @@ const Step3Page: FC<IStep3Page> = ({ params }) => {
             </Select>
           </div>
 
-          <LazyMap country={country} />
+          <LazyMap latLang={[lat, lng]} />
+          <div>
+            <p>
+              lat: {lat}, long: {lng}
+            </p>
+          </div>
         </div>
 
         <BottomBar />
