@@ -53,8 +53,13 @@ const UserMenu = async () => {
               )}
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/my-homes" className="w-full">
-                My Listings
+              <Link href="/user" className="w-full">
+                About Me
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/user/homes" className="w-full">
+                My Homes
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
