@@ -31,18 +31,18 @@ model Home {
 
   category      String?
 
-  title         String?
-  description   String?
-  price         Int?
+  title         String
+  description   String
+  price         Int
   imageSrc      String?
 
   guestCount    Int?
   roomCount     Int?
   bathroomCount Int?
 
-  country      String?
-  pinLat       Float?
-  pinLon       Float?
+  country      String @default("")
+  pinLat       Float @default(0)
+  pinLon       Float @default(0)
   
   Favorite     Favorite[]
   Reservation  Reservation[]
