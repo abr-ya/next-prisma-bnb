@@ -13,7 +13,7 @@ export async function createHomeAction({ userId }: { userId: string }) {
   // если нет данных или если заполнен шаг 3 - создаём новый объект
   if (data === null || data.hasStep3) {
     console.log(`Create new Home for user ${userId} and go to step 1...`);
-    const data = await prisma.home.create({ data: { userId } });
+    const data = await prisma.home.create({ data: { userId, title: "", description: "", price: 0 } });
 
     return redirect(`/new/${data.id}/step-1`);
   } else {
