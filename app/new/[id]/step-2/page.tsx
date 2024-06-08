@@ -27,7 +27,7 @@ const Step2Page: FC<IStep2Page> = ({ params }) => (
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Price</Label>
-          <Input name="price" type="number" required placeholder="Price per Night in USD" min={10} />
+          <Input name="price" type="number" required placeholder="Price per Night in USD" min={2} />
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Image</Label>

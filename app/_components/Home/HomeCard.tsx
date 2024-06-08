@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { IHome } from "@/app/_interfaces/home.interfaces";
@@ -8,12 +9,22 @@ interface IHomeCard {
   data: IHome;
 }
 
-const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, price } }) => {
+const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, price } }) => {
   const { getCountryByValue } = useCountries();
   const coData = getCountryByValue(country);
 
+  // todo: Server from ENV!
   return (
     <div className="flex flex-col">
+      <div className="relative h-72">
+        <Image
+          src={`https://flxqnzydzcxbchixsgnl.supabase.co/storage/v1/object/public/next-bnb-24/${imageSrc}`}
+          alt="Image of House"
+          fill
+          className="rounded-lg h-full object-cover"
+        />
+      </div>
+
       <Link href={`/home/${id}`} className="mt-2">
         <h3 className="font-medium text-base">
           {coData?.flag} {coData?.label} / {coData?.region}

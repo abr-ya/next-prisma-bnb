@@ -1,7 +1,9 @@
 "use server";
 
+import { supabase } from "./_api/supabase";
 import prisma from "./lib/db";
 import { redirect } from "next/navigation";
+import { addTimeStamp } from "./lib/utils";
 
 // todo: use bind == arrow or not?!
 export async function createHomeAction({ userId }: { userId: string }) {
@@ -54,14 +56,14 @@ export const saveTextAction = async (formData: FormData) => {
   const bathroomsNumber = formData.get("bathroom") as string;
 
   // todo: Upload Image
-  console.log(`ToDo: upload Image ${imageFile}`);
-  // const { data: imageData } = await supabase.storage
-  //   .from("images")
-  //   .upload(`${imageFile.name}-${new Date()}`, imageFile, {
-  //     cacheControl: "2592000",
-  //     contentType: "image/png",
-  //   });
-  const imageData = { path: "https://www.buildi.com.au/wp-content/uploads/2023/06/double-storey-house-scaled.jpg" };
+  console.log(`ToDo: upload Image ${imageFile.name}`);
+  // -${new Date()}
+  const loadOptions = { cacheControl: "2592000", upsert: false };
+  const { data: imageData, error } = await supabase.storage
+    .from("next-bnb-24") // todo: move name to ENV
+    .upload(addTimeStamp(imageFile.name), imageFile, loadOptions);
+  console.log("imageData", imageData);
+  console.log("error", error);
 
   // prepare data
   const updateData = {

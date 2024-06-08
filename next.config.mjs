@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "a0.muscache.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "flxqnzydzcxbchixsgnl.supabase.co",
+        pathname: "/**",
+      },
     ],
   },
 };
