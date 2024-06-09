@@ -30,3 +30,34 @@ export const getUserHomes = async (userId: string) => {
 
   return data;
 };
+
+export const getHomeDetail = async (id: string) => {
+  noStore();
+  const data = await prisma.home.findUnique({
+    where: { id },
+    select: {
+      imageSrc: true,
+      description: true,
+      guestCount: true,
+      roomCount: true,
+      bathroomCount: true,
+      title: true,
+      category: true,
+      price: true,
+      country: true,
+      Reservation: {
+        where: {
+          homeId: id,
+        },
+      },
+      User: {
+        select: {
+          profileImage: true,
+          firstName: true,
+        },
+      },
+    },
+  });
+
+  return data;
+};

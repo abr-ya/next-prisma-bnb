@@ -16,17 +16,17 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
   // todo: Server from ENV!
   return (
     <div className="flex flex-col">
-      <div className="relative h-72">
-        <Image
-          src={`https://flxqnzydzcxbchixsgnl.supabase.co/storage/v1/object/public/next-bnb-24/${imageSrc}`}
-          alt="Image of House"
-          fill
-          className="rounded-lg h-full object-cover"
-        />
-      </div>
+      <Link href={`/home/${id}`}>
+        <div className="relative h-72">
+          <Image
+            src={`https://flxqnzydzcxbchixsgnl.supabase.co/storage/v1/object/public/next-bnb-24/${imageSrc}`}
+            alt="Image of House"
+            fill
+            className="rounded-lg h-full object-cover"
+          />
+        </div>
 
-      <Link href={`/home/${id}`} className="mt-2">
-        <h3 className="font-medium text-base">
+        <h3 className="font-medium text-base mt-2">
           {coData?.flag} {coData?.label} / {coData?.region}
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-2">{description}</p>
