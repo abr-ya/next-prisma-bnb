@@ -1,7 +1,6 @@
 "use server";
 
 import Link from "next/link";
-import Image from "next/image";
 import { MenuIcon } from "lucide-react";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
@@ -14,12 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { createHomeAction } from "../_actions/createHome";
+import Avatar from "./Avatar";
 
 const UserMenu = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  const avaSrc = user?.picture || "/no-avatar.jpg";
   const userId = user?.id;
 
   const startHomeCreating = createHomeAction.bind(null, { userId: userId as string });
@@ -29,13 +28,7 @@ const UserMenu = async () => {
       <DropdownMenuTrigger>
         <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
           <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
-          <Image
-            src={avaSrc}
-            className="rounded-full h-8 w-8 hidden md:block"
-            alt="Image of the user"
-            width={100}
-            height={100}
-          />
+          <Avatar img={user?.picture} />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[200px]">

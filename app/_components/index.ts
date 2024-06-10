@@ -1,3 +1,4 @@
+export { default as Avatar } from "./Avatar";
 export { NewHomeSubmit } from "./Buttons";
 export { default as CategoryFilter } from "./CategoryFilter";
 export { default as EmptyResult } from "./EmptyResult";

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { IHome } from "@/app/_interfaces/home.interfaces";
 import { useCountries } from "@/app/lib/getCountries";
+import { IMG_STORAGE } from "@/app/constants";
 
 interface IHomeCard {
   data: IHome;
@@ -13,13 +14,12 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
   const { getCountryByValue } = useCountries();
   const coData = getCountryByValue(country);
 
-  // todo: Server from ENV!
   return (
     <div className="flex flex-col">
       <Link href={`/home/${id}`}>
         <div className="relative h-72">
           <Image
-            src={`https://flxqnzydzcxbchixsgnl.supabase.co/storage/v1/object/public/next-bnb-24/${imageSrc}`}
+            src={`${IMG_STORAGE}/${imageSrc}`}
             alt="Image of House"
             fill
             className="rounded-lg h-full object-cover"
