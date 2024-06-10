@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createHomeAction } from "../actions";
+import { createHomeAction } from "../_actions/createHome";
 
 const UserMenu = async () => {
   const { getUser } = getKindeServerSession();

@@ -1,4 +1,4 @@
-import { getUserHomes } from "@/app/_api/home";
+import { getUserHomes } from "@/app/_actions/getHome";
 import { EmptyResult, HomeList } from "@/app/_components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 

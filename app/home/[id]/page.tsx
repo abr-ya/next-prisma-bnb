@@ -1,4 +1,4 @@
-import { getHomeDetail } from "@/app/_api/home";
+import { getHomeDetail } from "@/app/_actions/getHome";
 import { FC } from "react";
 
 interface IHomeDetailPage {

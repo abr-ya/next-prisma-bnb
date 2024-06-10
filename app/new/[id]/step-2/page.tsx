@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BottomBar } from "@/app/_components";
-import { saveTextAction } from "@/app/actions";
+import { saveTextAction } from "@/app/_actions/createHome";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";

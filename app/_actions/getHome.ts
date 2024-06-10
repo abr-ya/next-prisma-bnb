@@ -36,12 +36,12 @@ export const getHomeDetail = async (id: string) => {
   const data = await prisma.home.findUnique({
     where: { id },
     select: {
-      imageSrc: true,
+      title: true,
       description: true,
+      imageSrc: true,
       guestCount: true,
       roomCount: true,
       bathroomCount: true,
-      title: true,
       category: true,
       price: true,
       country: true,

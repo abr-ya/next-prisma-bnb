@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BottomBar, SelectedCategory } from "@/app/_components";
-import { saveCategoryAction } from "@/app/actions";
+import { saveCategoryAction } from "@/app/_actions/createHome";
 import Header from "../Header";
 
 interface IStep1Page {

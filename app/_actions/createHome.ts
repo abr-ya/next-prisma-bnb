@@ -1,9 +1,9 @@
 "use server";
 
-import { supabase } from "./_api/supabase";
-import prisma from "./lib/db";
+import { supabase } from "../_api/supabase";
+import prisma from "../lib/db";
 import { redirect } from "next/navigation";
-import { addTimeStamp } from "./lib/utils";
+import { addTimeStamp } from "../lib/utils";
 
 // todo: use bind == arrow or not?!
 export async function createHomeAction({ userId }: { userId: string }) {
@@ -57,7 +57,6 @@ export const saveTextAction = async (formData: FormData) => {
 
   // todo: Upload Image
   console.log(`ToDo: upload Image ${imageFile.name}`);
-  // -${new Date()}
   const loadOptions = { cacheControl: "2592000", upsert: false };
   const { data: imageData, error } = await supabase.storage
     .from("next-bnb-24") // todo: move name to ENV
