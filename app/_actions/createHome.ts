@@ -56,13 +56,21 @@ export const saveTextAction = async (formData: FormData) => {
   const bathroomsNumber = formData.get("bathroom") as string;
 
   // todo: Upload Image
-  console.log(`ToDo: upload Image ${imageFile.name}`);
-  const loadOptions = { cacheControl: "2592000", upsert: false };
-  const { data: imageData, error } = await supabase.storage
-    .from("next-bnb-24") // todo: move name to ENV
-    .upload(addTimeStamp(imageFile.name), imageFile, loadOptions);
-  console.log("imageData", imageData);
-  console.log("error", error);
+  const bucketName = process.env.SUPA_BUCKET_NAME;
+
+  let imageData;
+  if (bucketName) {
+    console.log(`ToDo: upload Image ${imageFile.name}`);
+    const loadOptions = { cacheControl: "2592000", upsert: false };
+    const { data, error } = await supabase.storage
+      .from(bucketName) // todo: move name to ENV
+      .upload(addTimeStamp(imageFile.name), imageFile, loadOptions);
+    imageData = data;
+    console.log("imageData", imageData);
+    console.log("error", error);
+  } else {
+    console.log("Need SUPA_BUCKET_NAME to save Image!");
+  }
 
   // prepare data
   const updateData = {
@@ -74,7 +82,7 @@ export const saveTextAction = async (formData: FormData) => {
     roomCount: Number(roomNumber),
     bathroomCount: Number(bathroomsNumber),
 
-    imageSrc: imageData?.path,
+    imageSrc: imageData?.path || null,
     hasStep2: true,
   };
 
