@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BottomBar } from "@/app/_components";
+import { BottomBar, CounterWithComment } from "@/app/_components";
 import { saveTextAction } from "@/app/_actions/createHome";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +23,7 @@ const Step2Page: FC<IStep2Page> = ({ params }) => (
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Descrption</Label>
-          <Textarea name="description" required placeholder="Please describe your home..." />
+          <Textarea name="description" placeholder="Please describe your home..." />
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Price</Label>
@@ -31,10 +31,13 @@ const Step2Page: FC<IStep2Page> = ({ params }) => (
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Image</Label>
-          <Input name="image" type="file" required />
+          <Input name="image" type="file" />
         </div>
 
         {/* Counters! */}
+        <CounterWithComment name="guest" title="Guests" comment="How many guests do you want?" />
+        <CounterWithComment name="room" title="Rooms" comment="How many rooms do you have?" />
+        <CounterWithComment name="bathroom" title="Bathrooms" comment="How many bathrooms do you have?" />
       </div>
 
       <BottomBar />

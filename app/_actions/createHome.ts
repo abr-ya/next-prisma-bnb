@@ -59,7 +59,7 @@ export const saveTextAction = async (formData: FormData) => {
   const bucketName = process.env.SUPA_BUCKET_NAME;
 
   let imageData;
-  if (bucketName) {
+  if (bucketName && imageFile.size) {
     console.log(`ToDo: upload Image ${imageFile.name}`);
     const loadOptions = { cacheControl: "2592000", upsert: false };
     const { data, error } = await supabase.storage
@@ -73,16 +73,26 @@ export const saveTextAction = async (formData: FormData) => {
   }
 
   // prepare data
+  const prepDataArray = [
+    { key: "title", value: title },
+    { key: "description", value: description },
+    { key: "price", value: Number(price) },
+    { key: "imageSrc", value: imageData?.path },
+  ];
+
+  const onlyTrueData = {};
+  // @ts-expect-error need be careful with keys!
+  prepDataArray.filter((el) => el.value).forEach(({ key, value }) => (onlyTrueData[key] = value));
+
+  console.log(onlyTrueData);
+
   const updateData = {
-    title,
-    description,
-    price: Number(price),
+    ...onlyTrueData,
 
     guestCount: Number(guestNumber),
     roomCount: Number(roomNumber),
     bathroomCount: Number(bathroomsNumber),
 
-    imageSrc: imageData?.path || null,
     hasStep2: true,
   };
 
