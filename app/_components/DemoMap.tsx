@@ -2,14 +2,8 @@
 
 import { FC } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-
-const ICON = icon({
-  iconUrl:
-    "https://images.vexels.com/media/users/3/131261/isolated/preview/b2e48580147ca0ed3f970f30bf8bb009-karten-standortmarkierung.png",
-  iconSize: [32, 32],
-});
+import { ICON } from "./Leaflet/markerIcons";
 
 interface IDemoMap {
   latLang: [number, number];
