@@ -9,7 +9,7 @@ import { categories } from "../_tempData/categories";
 
 const CategoryFilter = () => {
   const searchParams = useSearchParams();
-  const search = searchParams.get("filter");
+  const search = searchParams.get("category");
   const pathname = usePathname();
 
   const createQueryString = useCallback(
@@ -27,7 +27,7 @@ const CategoryFilter = () => {
       {categories.map((cat) => (
         <Link
           key={cat.id}
-          href={pathname + "?" + createQueryString("filter", cat.name)}
+          href={pathname + "?" + createQueryString("category", cat.name)}
           className={cn(
             search === cat.name ? "border-b-2 border-black pb-2 flex-shrink-0" : "opacity-70 flex-shrink-0",
             "flex flex-col gap-y-3 items-center",

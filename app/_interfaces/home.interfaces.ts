@@ -16,7 +16,7 @@ export interface IHome {
 }
 
 export interface IHomeFilters {
-  filter?: string;
+  category?: string;
   country?: string;
   guest?: number;
   room?: number;
