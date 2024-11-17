@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint \"./app/**/*.{js,ts,tsx}\" --quiet",
-    "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix"
+    "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix",
+    "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.2.10",
