@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint \"./app/**/*.{js,ts,tsx}\" --quiet",
     "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix",
-    "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix"
+    "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.2.10",
