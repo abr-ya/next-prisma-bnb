@@ -8,3 +8,4 @@ export { default as HomeList } from "./Home/HomeList";
 export { default as Navbar } from "./Navbar";
 export { default as BottomBar } from "./NewHome/BottomBar";
 export { default as SelectedCategory } from "./NewHome/SelectCategory";
+export { default as SkeletonList } from "./SkeletonList";
