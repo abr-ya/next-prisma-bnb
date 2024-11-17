@@ -14,3 +14,11 @@ export interface IHome {
   price: number;
   Favorite: Array<IFavourite>;
 }
+
+export interface IHomeFilters {
+  filter?: string;
+  country?: string;
+  guest?: number;
+  room?: number;
+  bathroom?: number;
+}

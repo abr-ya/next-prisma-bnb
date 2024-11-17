@@ -1,5 +1,42 @@
+import { IHomeFilters } from "../_interfaces/home.interfaces";
 import prisma from "../lib/db";
 import { unstable_noStore as noStore } from "next/cache";
+
+const selectHomeFieldsForList = {
+  id: true,
+  title: true,
+  description: true,
+  country: true,
+  imageSrc: true,
+  price: true,
+};
+
+export const getHomes = async ({ searchParams, userId }: { userId?: string; searchParams?: IHomeFilters }) => {
+  noStore();
+  const data = await prisma.home.findMany({
+    where: {
+      // todo == оставить только те, где заполнены все 3 шага?
+      category: searchParams?.filter ?? undefined,
+      country: searchParams?.country ?? undefined,
+      guestCount: searchParams?.guest ?? undefined,
+      roomCount: searchParams?.room ?? undefined,
+      bathroomCount: searchParams?.bathroom ?? undefined,
+    },
+    select: {
+      ...selectHomeFieldsForList,
+      Favorite: {
+        where: {
+          userId: userId ?? undefined,
+        },
+      },
+    },
+    orderBy: {
+      createdAT: "asc",
+    },
+  });
+
+  return data;
+};
 
 export const getUserHomes = async (userId: string) => {
   noStore();
@@ -11,12 +48,7 @@ export const getUserHomes = async (userId: string) => {
       hasStep3: true,
     },
     select: {
-      id: true,
-      title: true,
-      description: true,
-      country: true,
-      imageSrc: true,
-      price: true,
+      ...selectHomeFieldsForList,
       Favorite: {
         where: {
           userId: userId,
