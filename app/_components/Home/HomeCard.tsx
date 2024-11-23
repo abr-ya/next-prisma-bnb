@@ -5,14 +5,21 @@ import Link from "next/link";
 import { IHome } from "@/app/_interfaces/home.interfaces";
 import { useCountries } from "@/app/lib/getCountries";
 import { IMG_STORAGE } from "@/app/constants";
+import { Heart } from "lucide-react";
 
 interface IHomeCard {
   data: IHome;
+  userId?: string;
 }
 
-const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, price } }) => {
+// todo: temp!!!
+const AddToFavoriteButton = () => <Heart className="w-4 h-4" color="#E21C49" />;
+const DelFromFavoriteButton = () => <Heart className="w-4 h-4 text-primary" fill="#E21C49" />;
+
+const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, price, Favorite }, userId }) => {
   const { getCountryByValue } = useCountries();
   const coData = getCountryByValue(country);
+  const isLiked = Favorite.length > 0;
 
   return (
     <div className="flex flex-col">
@@ -24,6 +31,11 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
             fill
             className="rounded-lg h-full object-cover"
           />
+          {userId && (
+            <div className="z-10 absolute top-2 right-2">
+              {isLiked ? <DelFromFavoriteButton /> : <AddToFavoriteButton />}
+            </div>
+          )}
         </div>
 
         <h3 className="font-medium text-base mt-2">

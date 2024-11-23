@@ -7,9 +7,10 @@ interface IHomeList {
   data: IHome[];
   emptyTitle?: string;
   emptyComment?: string;
+  userId?: string;
 }
 
-const HomeList: FC<IHomeList> = ({ data, emptyTitle, emptyComment }) => {
+const HomeList: FC<IHomeList> = ({ data, emptyTitle, emptyComment, userId }) => {
   console.log("HomeList data", data);
 
   if (data.length === 0)
@@ -18,7 +19,7 @@ const HomeList: FC<IHomeList> = ({ data, emptyTitle, emptyComment }) => {
   return (
     <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-8 mt-8">
       {data.map((item) => (
-        <HomeCard key={item.id} data={item} />
+        <HomeCard key={item.id} data={item} userId={userId} />
       ))}
     </div>
   );

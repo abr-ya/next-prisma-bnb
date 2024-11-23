@@ -93,3 +93,19 @@ export const getHomeDetail = async (id: string) => {
 
   return data;
 };
+
+export const getLikedByUser = async (userId: string) => {
+  noStore();
+  const data = await prisma.favorite.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      Home: {
+        select: selectHomeFieldsForList,
+      },
+    },
+  });
+
+  return data;
+};

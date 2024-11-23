@@ -56,12 +56,12 @@ const UserMenu = async () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/favorites" className="w-full">
+              <Link href="/user/favorites" className="w-full">
                 My Favorites
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/reservations" className="w-full">
+              <Link href="/user/reservations" className="w-full">
                 My Reservations
               </Link>
             </DropdownMenuItem>
