@@ -6,6 +6,7 @@ import { Avatar } from "@/app/_components";
 import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
+import Link from "next/link";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -17,17 +18,27 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
   const country = getCountryByValue(data?.country as string);
   console.log(data);
 
-  return (
-    <div className="w-[75%] mx-auto mt-10 mb-12">
-      <h1 className="font-medium text-2xl mb-5">{data?.title}</h1>
+  const renderImgBlock = (imageSrc: string | null | undefined) =>
+    imageSrc ? (
       <div className="relative h-[550px]">
         <Image
           alt="Image of Home"
-          src={`${IMG_STORAGE}/${data?.imageSrc}`}
+          src={`${IMG_STORAGE}/${imageSrc}`}
           fill
           className="rounded-lg h-full object-cover w-full"
         />
       </div>
+    ) : (
+      <Link href={`${id}/edit/img`} className="w-full text-green-600">
+        Add Image (to do: button?)
+      </Link>
+    );
+
+  return (
+    <div className="w-[75%] mx-auto mt-10 mb-12">
+      <h1 className="font-medium text-2xl mb-5">{data?.title}</h1>
+
+      {renderImgBlock(data?.imageSrc)}
 
       <div className="flex justify-between gap-x-24 mt-8">
         <div className="w-2/3">

@@ -21,16 +21,18 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
   const coData = getCountryByValue(country);
   const isLiked = Favorite.length > 0;
 
+  const renderImgBlock = (imageSrc: string | null) =>
+    imageSrc ? (
+      <Image src={`${IMG_STORAGE}/${imageSrc}`} alt="Image of House" fill className="rounded-lg h-full object-cover" />
+    ) : (
+      <>.....</>
+    );
+
   return (
     <div className="flex flex-col">
       <Link href={`/home/${id}`}>
         <div className="relative h-72">
-          <Image
-            src={`${IMG_STORAGE}/${imageSrc}`}
-            alt="Image of House"
-            fill
-            className="rounded-lg h-full object-cover"
-          />
+          {renderImgBlock(imageSrc)}
           {userId && (
             <div className="z-10 absolute top-2 right-2">
               {isLiked ? <DelFromFavoriteButton /> : <AddToFavoriteButton />}

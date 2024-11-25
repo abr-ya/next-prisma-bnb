@@ -127,3 +127,35 @@ export const saveCountryAction = async (formData: FormData) => {
 
   return redirect("/");
 };
+
+// todo: mb other file for updates?
+export const updateImgAction = async (formData: FormData) => {
+  const homeId = formData.get("homeId") as string;
+  const imageFile = formData.get("image") as File;
+  const bucketName = process.env.SUPA_BUCKET_NAME;
+
+  let imageData;
+  if (bucketName && imageFile.size) {
+    console.log(`ToDo: upload Image ${imageFile.name}`);
+    const loadOptions = { cacheControl: "2592000", upsert: false };
+    const { data, error } = await supabase.storage
+      .from(bucketName)
+      .upload(addTimeStamp(imageFile.name), imageFile, loadOptions);
+    imageData = data;
+    console.log("imageData", imageData);
+    console.log("error", error);
+  } else {
+    console.log("Need SUPA_BUCKET_NAME to save Image!");
+  }
+
+  const imageSrc = imageData?.path;
+
+  console.log(`Add to ${homeId} img: ${imageSrc}`);
+  const data = await prisma.home.update({
+    where: { id: homeId },
+    data: { imageSrc },
+  });
+  console.log("Home updated:", data);
+
+  return redirect(`/home/${homeId}`);
+};
