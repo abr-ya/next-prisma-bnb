@@ -5,16 +5,12 @@ import Link from "next/link";
 import { IHome } from "@/app/_interfaces/home.interfaces";
 import { useCountries } from "@/app/lib/getCountries";
 import { IMG_STORAGE } from "@/app/constants";
-import { Heart } from "lucide-react";
+import { AddToFavoriteButton, DeleteFromFavoriteButton } from "./Buttons";
 
 interface IHomeCard {
   data: IHome;
   userId?: string;
 }
-
-// todo: temp!!!
-const AddToFavoriteButton = () => <Heart className="w-4 h-4" color="#E21C49" />;
-const DelFromFavoriteButton = () => <Heart className="w-4 h-4 text-primary" fill="#E21C49" />;
 
 const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, price, Favorite }, userId }) => {
   const { getCountryByValue } = useCountries();
@@ -30,16 +26,16 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
 
   return (
     <div className="flex flex-col">
-      <Link href={`/home/${id}`}>
-        <div className="relative h-72">
-          {renderImgBlock(imageSrc)}
-          {userId && (
-            <div className="z-10 absolute top-2 right-2">
-              {isLiked ? <DelFromFavoriteButton /> : <AddToFavoriteButton />}
-            </div>
-          )}
-        </div>
+      <div className="relative h-72">
+        {renderImgBlock(imageSrc)}
+        {userId && (
+          <div className="z-10 absolute top-2 right-2">
+            {isLiked ? <DeleteFromFavoriteButton /> : <AddToFavoriteButton />}
+          </div>
+        )}
+      </div>
 
+      <Link href={`/home/${id}`}>
         <h3 className="font-medium text-base mt-2">
           {coData?.flag} {coData?.label} / {coData?.region}
         </h3>
