@@ -6,13 +6,19 @@ import { IHome } from "@/app/_interfaces/home.interfaces";
 import { useCountries } from "@/app/lib/getCountries";
 import { IMG_STORAGE } from "@/app/constants";
 import { AddToFavoriteButton, DeleteFromFavoriteButton } from "./Buttons";
+import { addToFavoriteAction, DeleteFromFavoriteAction } from "@/app/_actions/likeActions";
 
 interface IHomeCard {
+  currentPath: string;
   data: IHome;
   userId?: string;
 }
 
-const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, price, Favorite }, userId }) => {
+const HomeCard: FC<IHomeCard> = ({
+  currentPath,
+  data: { id, description, country, imageSrc, price, Favorite },
+  userId,
+}) => {
   const { getCountryByValue } = useCountries();
   const coData = getCountryByValue(country);
   const isLiked = Favorite.length > 0;
@@ -30,7 +36,21 @@ const HomeCard: FC<IHomeCard> = ({ data: { id, description, country, imageSrc, p
         {renderImgBlock(imageSrc)}
         {userId && (
           <div className="z-10 absolute top-2 right-2">
-            {isLiked ? <DeleteFromFavoriteButton /> : <AddToFavoriteButton />}
+            {isLiked ? (
+              <form action={DeleteFromFavoriteAction}>
+                <input type="hidden" name="favoriteId" value={Favorite[0]?.id} />
+                <input type="hidden" name="userId" value={userId} />
+                <input type="hidden" name="pathName" value={currentPath} />
+                <DeleteFromFavoriteButton />
+              </form>
+            ) : (
+              <form action={addToFavoriteAction}>
+                <input type="hidden" name="homeId" value={id} />
+                <input type="hidden" name="userId" value={userId} />
+                <input type="hidden" name="pathName" value={currentPath} />
+                <AddToFavoriteButton />
+              </form>
+            )}
           </div>
         )}
       </div>

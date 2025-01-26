@@ -15,6 +15,7 @@ const MyHomes = async () => {
   return (
     <PageSection title="My Homes">
       <HomeList
+        currentPath="/user/homes"
         data={data}
         emptyComment="Please list a home on bnb so that you can see it right here"
         emptyTitle="You don't have any Homes listed"

@@ -12,7 +12,7 @@ const GetItemsContainer = async ({ searchParams }: { searchParams: IHomeFilters 
 
   const homes = await getHomes({ userId: user?.id, searchParams });
 
-  return <HomeList data={homes} userId={user?.id} />;
+  return <HomeList data={homes} userId={user?.id} currentPath="/" />;
 };
 
 const Home = async ({ searchParams }: { searchParams: IHomeFilters }) => (

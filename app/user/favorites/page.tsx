@@ -17,6 +17,7 @@ const MyFavorites = async () => {
   return (
     <PageSection title="My Favorites">
       <HomeList
+        currentPath="/user/favorites"
         // @ts-expect-error data.key ?? mb add check for params in Card?
         data={data}
         emptyComment="Just like something!.."
