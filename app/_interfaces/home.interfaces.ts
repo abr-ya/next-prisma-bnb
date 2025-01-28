@@ -13,6 +13,7 @@ export interface IHome {
   imageSrc: string | null;
   price: number;
   Favorite: Array<IFavourite>;
+  likeId?: string;
 }
 
 export interface IHomeFilters {

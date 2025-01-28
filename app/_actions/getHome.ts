@@ -101,6 +101,7 @@ export const getLikedByUser = async (userId: string) => {
       userId: userId,
     },
     select: {
+      id: true,
       Home: {
         select: selectHomeFieldsForList,
       },

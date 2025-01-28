@@ -1,12 +1,12 @@
 import { FC } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { getHomeDetail } from "@/app/_actions/getHome";
 import { Avatar } from "@/app/_components";
 import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
-import Link from "next/link";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -29,6 +29,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
         />
       </div>
     ) : (
+      // todo: Add User check!
       <Link href={`${id}/edit/img`} className="w-full text-green-600">
         Add Image (to do: button?)
       </Link>
