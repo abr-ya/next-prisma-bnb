@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getHomeDetail } from "@/app/_actions/getHome";
-import { Avatar } from "@/app/_components";
+import { Avatar, CategoryItem } from "@/app/_components";
 import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
+import HomeOnMap from "./_components/HomeOnMap";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -56,14 +57,13 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
               <p className="text-sm text-muted-foreground">Host since ???</p>
             </div>
           </div>
-          <Separator className="my-7" />
-          {/* Category */}
-          Category
-          <Separator className="my-7" />
+          <Separator className="my-5" />
+          <CategoryItem name={data?.category as string} />
+          <Separator className="my-5" />
           <p className="text-muted-foreground">{data?.description}</p>
-          <Separator className="my-7" />
+          <Separator className="my-5" />
           {/* Map */}
-          Map
+          <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
         </div>
         {/* Reservation Form */}
         Reservation Form

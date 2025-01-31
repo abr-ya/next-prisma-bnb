@@ -77,6 +77,8 @@ export const getHomeDetail = async (id: string) => {
       category: true,
       price: true,
       country: true,
+      pinLat: true,
+      pinLon: true,
       Reservation: {
         where: {
           homeId: id,
