@@ -57,10 +57,13 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
               <p className="text-sm text-muted-foreground">Host since ???</p>
             </div>
           </div>
+
           <Separator className="my-5" />
-          <CategoryItem name={data?.category as string} />
+          {data?.category ? <CategoryItem name={data?.category} /> : null}
+
           <Separator className="my-5" />
           <p className="text-muted-foreground">{data?.description}</p>
+
           <Separator className="my-5" />
           {/* Map */}
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
