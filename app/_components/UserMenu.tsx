@@ -61,8 +61,8 @@ const UserMenu = async () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/user/reservations" className="w-full">
-                My Reservations
+              <Link href="/user/bookings" className="w-full">
+                My Bookings
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />

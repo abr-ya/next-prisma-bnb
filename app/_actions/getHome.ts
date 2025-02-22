@@ -112,3 +112,20 @@ export const getLikedByUser = async (userId: string) => {
 
   return data;
 };
+
+export const getBookedByUser = async (userId: string) => {
+  noStore();
+  const data = await prisma.reservation.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      id: true,
+      Home: {
+        select: selectHomeFieldsForList,
+      },
+    },
+  });
+
+  return data;
+};
