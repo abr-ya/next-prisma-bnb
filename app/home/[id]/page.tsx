@@ -8,6 +8,8 @@ import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
 import HomeOnMap from "./_components/HomeOnMap";
+import BookingForm from "./_components/BookingForm";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -18,6 +20,9 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(data?.country as string);
   console.log(data);
+
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
   const renderImgBlock = (imageSrc: string | null | undefined) =>
     imageSrc ? (
@@ -69,7 +74,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
         </div>
         {/* Reservation Form */}
-        Reservation Form
+        <BookingForm booked={data?.Reservation || []} homeId={id} userId={user?.id} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { DateRange, Range } from "react-date-range";
 import { FC, useState } from "react";
 import { eachDayOfInterval } from "date-fns";
+import ruLocale from "date-fns/locale/ru";
 
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -10,7 +11,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { IDateRange } from "../_interfaces/booking.interfaces";
 
 interface IDateRangePicker {
-  reservation?: IDateRange[];
+  reservation: IDateRange[];
 }
 
 const DateRangePicker: FC<IDateRangePicker> = ({ reservation }) => {
@@ -42,6 +43,7 @@ const DateRangePicker: FC<IDateRangePicker> = ({ reservation }) => {
         minDate={new Date()}
         direction="vertical"
         disabledDates={disabledDates}
+        locale={ruLocale}
       />
     </>
   );

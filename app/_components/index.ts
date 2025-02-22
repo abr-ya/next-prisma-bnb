@@ -5,6 +5,7 @@ export { default as CategoryFilter } from "./CategoryFilter";
 export { default as CategoryItem } from "./CategoryItem";
 export { default as Counter } from "./NewHome/Counter";
 export { default as CounterWithComment } from "./NewHome/CounterWithComment";
+export { default as DateRangePicker } from "./DateRangePicker";
 export { default as EmptyResult } from "./EmptyResult";
 export { default as HomeList } from "./Home/HomeList";
 export { default as Navbar } from "./Navbar";
