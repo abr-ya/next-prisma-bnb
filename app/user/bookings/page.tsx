@@ -1,7 +1,7 @@
 import { getBookedByUser } from "@/app/_actions/getHome";
 import { HomeList, PageSection, SkeletonList } from "@/app/_components";
-import { IHome } from "@/app/_interfaces/home.interfaces";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { IBookedHome } from "@/app/_interfaces/home.interfaces";
 
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -13,7 +13,9 @@ const MyBookingsList = async () => {
   if (!user) return redirect("/");
 
   // todo: are we really need Favorite as Array?!
-  const data = (await getBookedByUser(user.id)).map((el) => ({ ...el.Home, Favorite: [] }) as IHome);
+  const data = (await getBookedByUser(user.id)).map(
+    (el) => ({ ...el.Home, Favorite: [], bookId: el.id, from: el.startDate, to: el.endDate }) as IBookedHome,
+  );
 
   console.log(data);
 

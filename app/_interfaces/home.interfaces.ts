@@ -16,6 +16,12 @@ export interface IHome {
   likeId?: string;
 }
 
+export interface IBookedHome extends IHome {
+  bookId: string;
+  from: Date;
+  to: Date;
+}
+
 export interface IHomeFilters {
   category?: string;
   country?: string;

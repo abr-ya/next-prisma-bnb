@@ -2,7 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { IHome } from "@/app/_interfaces/home.interfaces";
+import { IBookedHome, IHome } from "@/app/_interfaces/home.interfaces";
 import { useCountries } from "@/app/lib/getCountries";
 import { IMG_STORAGE } from "@/app/constants";
 import { AddToFavoriteButton, DeleteFromFavoriteButton } from "./Buttons";
@@ -10,18 +10,27 @@ import { addToFavoriteAction, DeleteFromFavoriteAction } from "@/app/_actions/li
 
 interface IHomeCard {
   currentPath: string;
-  data: IHome;
+  data: IHome | IBookedHome;
   userId?: string;
 }
 
 const HomeCard: FC<IHomeCard> = ({
   currentPath,
-  data: { id, description, country, imageSrc, price, Favorite },
+  data: { id, description, country, imageSrc, price, Favorite, ...restDate },
   userId,
 }) => {
   const { getCountryByValue } = useCountries();
   const coData = getCountryByValue(country);
   const isLiked = Favorite.length > 0;
+
+  let isBookingCard = false;
+  let from;
+  // let to;
+  if ("from" in restDate) {
+    isBookingCard = true;
+    from = restDate.from.toDateString();
+    // to = restDate.to.toDateString();
+  }
 
   const renderImgBlock = (imageSrc: string | null) =>
     imageSrc ? (
@@ -61,8 +70,17 @@ const HomeCard: FC<IHomeCard> = ({
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-2">{description}</p>
         <p className="pt-2 text-muted-foreground">
-          <span className="font-medium text-black">${price}</span> Night
+          {isBookingCard ? (
+            <>
+              <span className="font-medium text-black">from:</span> {from}
+            </>
+          ) : (
+            <>
+              <span className="font-medium text-black">${price}</span> Night
+            </>
+          )}
         </p>
+        {/* <p className="pt-2 text-muted-foreground"></p> !to!? */}
       </Link>
     </div>
   );

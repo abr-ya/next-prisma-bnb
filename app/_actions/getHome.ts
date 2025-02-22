@@ -121,6 +121,8 @@ export const getBookedByUser = async (userId: string) => {
     },
     select: {
       id: true,
+      endDate: true,
+      startDate: true,
       Home: {
         select: selectHomeFieldsForList,
       },
