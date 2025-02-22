@@ -2,9 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { FC } from "react";
 import { useFormStatus } from "react-dom";
 
-export const NewHomeSubmit = () => {
+interface INewHomeSubmit {
+  title?: string;
+}
+
+export const NewHomeSubmit: FC<INewHomeSubmit> = ({ title }) => {
   const { pending } = useFormStatus();
 
   return (
@@ -16,7 +21,7 @@ export const NewHomeSubmit = () => {
         </Button>
       ) : (
         <Button type="submit" size="lg">
-          Next
+          {title || "Next"}
         </Button>
       )}
     </>

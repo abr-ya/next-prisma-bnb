@@ -19,9 +19,8 @@ const BookingForm: FC<IBookingForm> = ({ booked, homeId, userId }) => {
 
       <DateRangePicker reservation={booked} />
 
-      {/* todo: customize titles */}
       {userId ? (
-        <NewHomeSubmit />
+        <NewHomeSubmit title="Booking Now!" />
       ) : (
         <Link href="/api/auth/login" className="text-blue-600">
           Please, Login for Booking
