@@ -5,11 +5,11 @@ import { Loader2 } from "lucide-react";
 import { FC } from "react";
 import { useFormStatus } from "react-dom";
 
-interface INewHomeSubmit {
+interface ISubmitButton {
   title?: string;
 }
 
-export const NewHomeSubmit: FC<INewHomeSubmit> = ({ title }) => {
+export const SubmitButton: FC<ISubmitButton> = ({ title }) => {
   const { pending } = useFormStatus();
 
   return (

@@ -25,7 +25,7 @@ export interface IBookedHome extends IHome {
 export interface IHomeFilters {
   category?: string;
   country?: string;
-  guest?: number;
-  room?: number;
-  bathroom?: number;
+  guest?: string;
+  room?: string;
+  bathroom?: string;
 }

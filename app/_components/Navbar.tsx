@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import UserMenu from "./UserMenu";
-import SearchModal from "./SearchModal";
+import SearchModal from "./Search/SearchModal";
 
 const Navbar = () => (
   <nav className="w-full border-b">

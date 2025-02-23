@@ -1,6 +1,6 @@
 export { default as Avatar } from "./Avatar";
 export { default as BottomBar } from "./NewHome/BottomBar";
-export { NewHomeSubmit } from "./Buttons";
+export { SubmitButton } from "./Buttons";
 export { default as CategoryFilter } from "./CategoryFilter";
 export { default as CategoryItem } from "./CategoryItem";
 export { default as Counter } from "./NewHome/Counter";

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { NewHomeSubmit } from "..";
+import { SubmitButton } from "..";
 
 const BottomBar = () => (
   <div className="fixed w-full bottom-0 z-10 bg-white border-t h-24">
@@ -8,7 +8,7 @@ const BottomBar = () => (
       <Button variant="secondary" size="lg" asChild>
         <Link href="/">Cancel</Link>
       </Button>
-      <NewHomeSubmit />
+      <SubmitButton />
     </div>
   </div>
 );

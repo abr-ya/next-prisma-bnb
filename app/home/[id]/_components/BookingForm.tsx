@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IDateRange } from "@/app/_interfaces/booking.interfaces";
 import { createBooking } from "@/app/_actions/createBooking";
-import { DateRangePicker, NewHomeSubmit } from "@/app/_components";
+import { DateRangePicker, SubmitButton } from "@/app/_components";
 import Link from "next/link";
 
 interface IBookingForm {
@@ -20,7 +20,7 @@ const BookingForm: FC<IBookingForm> = ({ booked, homeId, userId }) => {
       <DateRangePicker reservation={booked} />
 
       {userId ? (
-        <NewHomeSubmit title="Booking Now!" />
+        <SubmitButton title="Booking Now!" />
       ) : (
         <Link href="/api/auth/login" className="text-blue-600">
           Please, Login for Booking

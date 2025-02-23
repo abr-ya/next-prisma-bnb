@@ -16,11 +16,12 @@ export const getHomes = async ({ searchParams, userId }: { userId?: string; sear
   const data = await prisma.home.findMany({
     where: {
       // todo == оставить только те, где заполнены все 3 шага?
+      // todo: like ==> more or equal!
       category: searchParams?.category ?? undefined,
       country: searchParams?.country ?? undefined,
-      guestCount: searchParams?.guest ?? undefined,
-      roomCount: searchParams?.room ?? undefined,
-      bathroomCount: searchParams?.bathroom ?? undefined,
+      guestCount: searchParams?.guest ? Number(searchParams?.guest) : undefined,
+      roomCount: searchParams?.room ? Number(searchParams?.room) : undefined,
+      bathroomCount: searchParams?.bathroom ? Number(searchParams?.bathroom) : undefined,
     },
     select: {
       ...selectHomeFieldsForList,
