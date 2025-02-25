@@ -10,6 +10,7 @@ import { IMG_STORAGE } from "@/app/constants";
 import HomeOnMap from "./_components/HomeOnMap";
 import BookingForm from "./_components/BookingForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import EditPinClientModal from "./_components/EditPinClientModal";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -72,6 +73,9 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           <Separator className="my-5" />
           {/* Map */}
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
+          {/* Edit Map Modal Init Client ?! */}
+          {/* todo: Add isHost Check and real id */}
+          <EditPinClientModal />
         </div>
         {/* Reservation Form */}
         <BookingForm booked={data?.Reservation || []} homeId={id} userId={user?.id} />
