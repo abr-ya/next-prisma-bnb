@@ -17,7 +17,7 @@ const EditPinClientModal: FC<IEditPinClientModal> = (props) => {
   const init = {
     latitude: props.initLat || 0,
     longitude: props.initLon || 0,
-    zoom: 11,
+    zoom: 7,
   };
 
   return (

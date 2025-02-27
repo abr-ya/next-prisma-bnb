@@ -1,13 +1,15 @@
 "use client";
 
 import { FC, useState } from "react";
-
-import Modal from "./Modal";
-import Heading from "./Heading";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 import useEditPinModal from "@/app/_hooks/useEditPinModal";
-import MapBox from "../Mapbox/MapBox";
 import { ICoord } from "@/app/_interfaces/map.interfaces";
+
+import MapBox from "../Mapbox/MapBox";
+import Modal from "./Modal";
+import Heading from "./Heading";
 
 interface IEditPinModal {
   homeId: string;
@@ -16,6 +18,7 @@ interface IEditPinModal {
 }
 
 const EditPinModal: FC<IEditPinModal> = ({ initLat, initLon, homeId }) => {
+  const router = useRouter();
   const editPinModal = useEditPinModal();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -34,10 +37,24 @@ const EditPinModal: FC<IEditPinModal> = ({ initLat, initLon, homeId }) => {
     console.log("save data", data, homeId);
 
     // axios patch
-    // toast success / error
-    // router.refresh
-    // finally: loading => false
-    setIsLoading(false);
+    // axios patch
+    axios
+      .patch(`/api/home/${homeId}`, data)
+      .then(() => {
+        // toast.success("Listing Pin updated!");
+        console.log("Listing Pin updated!");
+        router.refresh();
+        editPinModal.onClose();
+      })
+      .catch(() => {
+        // toast.error("Something went wrong.");
+        console.log("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    // todo: toast success / error
   };
 
   const title = "Set Pin!";
