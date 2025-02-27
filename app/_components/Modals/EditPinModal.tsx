@@ -9,11 +9,17 @@ import useEditPinModal from "@/app/_hooks/useEditPinModal";
 import MapBox from "../Mapbox/MapBox";
 import { ICoord } from "@/app/_interfaces/map.interfaces";
 
-const EditPinModal: FC = () => {
+interface IEditPinModal {
+  homeId: string;
+  initLat: number;
+  initLon: number;
+}
+
+const EditPinModal: FC<IEditPinModal> = ({ initLat, initLon, homeId }) => {
   const editPinModal = useEditPinModal();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [coord, setCoord] = useState<ICoord | null>(null);
+  const [coord, setCoord] = useState<ICoord | null>({ lat: initLat, lng: initLon });
 
   const onSave = () => {
     setIsLoading(true);
@@ -25,12 +31,13 @@ const EditPinModal: FC = () => {
       },
     };
 
-    console.log("save data", data);
+    console.log("save data", data, homeId);
 
     // axios patch
     // toast success / error
     // router.refresh
     // finally: loading => false
+    setIsLoading(false);
   };
 
   const title = "Set Pin!";
@@ -40,7 +47,7 @@ const EditPinModal: FC = () => {
     <div className="flex flex-col gap-4">
       <Heading title={title} subtitle={subtitle} />
       <div className="h-[400px]">
-        <MapBox initView={editPinModal.init} coordHandler={setCoord} />
+        <MapBox initView={editPinModal.init} coordHandler={setCoord} pin={{ lat: 0, lng: 0 }} />
       </div>
     </div>
   );

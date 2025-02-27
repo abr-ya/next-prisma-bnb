@@ -75,7 +75,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
           {/* Edit Map Modal Init Client ?! */}
           {/* todo: Add isHost Check and real id */}
-          <EditPinClientModal />
+          <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
         </div>
         {/* Reservation Form */}
         <BookingForm booked={data?.Reservation || []} homeId={id} userId={user?.id} />
