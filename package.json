@@ -9,7 +9,8 @@
     "lint": "eslint \"./app/**/*.{js,ts,tsx}\" --quiet",
     "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix",
     "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.2.10",
