@@ -22,6 +22,13 @@ export interface IBookedHome extends IHome {
   to: Date;
 }
 
+export interface IHomeUpdateData {
+  title?: string;
+  description?: string;
+  pinLat?: number;
+  pinLon?: number;
+}
+
 export interface IHomeFilters {
   category?: string;
   country?: string;
