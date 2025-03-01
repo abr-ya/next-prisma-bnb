@@ -71,6 +71,7 @@ export const getHomeDetail = async (id: string) => {
       title: true,
       description: true,
       imageSrc: true,
+      images: true,
       guestCount: true,
       roomCount: true,
       bathroomCount: true,

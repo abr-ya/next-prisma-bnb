@@ -159,3 +159,21 @@ export const updateImgAction = async (formData: FormData) => {
 
   return redirect(`/home/${homeId}`);
 };
+
+export const connectImagesAction = async (formData: FormData) => {
+  const homeId = formData.get("homeId") as string;
+  const images = formData.getAll("images") as string[];
+
+  const home = await prisma.home.update({
+    where: { id: homeId },
+    data: {
+      images: {
+        connect: images.map((id) => ({ id })),
+      },
+    },
+  });
+
+  console.log("Home updated:", home);
+
+  return redirect(`/home/${homeId}`);
+};
