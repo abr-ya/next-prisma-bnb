@@ -24,6 +24,7 @@ model User {
   Home         Home[]
   Favorite     Favorite[]
   Reservation  Reservation[]
+  images       Image[]
 }
 
 model Home {
@@ -51,9 +52,11 @@ model Home {
   hasStep2     Boolean @default(false)
   hasStep3     Boolean @default(false)
 
-  createdAT DateTime @default(now())
-  User      User?    @relation(fields: [userId], references: [id])
-  userId    String?
+  createdAT    DateTime @default(now())
+  User         User?    @relation(fields: [userId], references: [id])
+  userId       String?
+
+  images       Image[]
 }
 
 model Favorite {
@@ -78,4 +81,42 @@ model Reservation {
   userId String?
   Home   Home?   @relation(fields: [homeId], references: [id])
   homeId String?
+}
+
+model Tag {
+  id String @id @default(uuid())
+
+  title String
+  userId String
+
+  images   Image[]
+}
+
+model Folder {
+  id String @id @default(uuid())
+
+  title String
+  userId String
+  parentId String
+
+  images Image[]
+}
+
+model Image {
+  id String @id @default(uuid())
+
+  url String @unique
+  title String?
+  userId String
+  user User @relation(fields: [userId], references: [id])
+
+  tags Tag[]
+
+  folderId String?
+  folder Folder? @relation(fields: [folderId], references: [id])
+
+  homeId String?
+  home Home? @relation(fields: [homeId], references: [id])
+
+  createAt DateTime @default(now())
 }
