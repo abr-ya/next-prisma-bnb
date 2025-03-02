@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 import { getUserImages, uploadUserImageAction } from "@/app/_actions/images";
-import { ImageForm, PageSection, SubmitButton } from "@/app/_components";
-import { connectImagesAction } from "@/app/_actions/createHome";
+import { ImageForm, PageSection } from "@/app/_components";
+import { IMG_STORAGE } from "@/app/constants";
 
 const MyImages = async () => {
   const { getUser } = getKindeServerSession();
@@ -15,20 +16,22 @@ const MyImages = async () => {
 
   return (
     <PageSection title="My Images">
-      <h2>Users images will be here soon...</h2>
       <p>{JSON.stringify(data)}</p>
-      <form action={connectImagesAction}>
-        <input type="hidden" name="homeId" value={"067fcd88-f291-4c27-8f49-ea9d7ac140aa"} />
-        {data.map(({ id }) => (
-          <div key={id}>
-            <input type="checkbox" id={id} name="images" value={id} />
-            <label htmlFor="scales">{id}</label>
+      <div className="flex flex-wrap gap-x-[4%]">
+        {data.map((img) => (
+          <div className="w-[22%] my-4 p-2 relative h-[150px]" key={img.id}>
+            <Image
+              src={`${IMG_STORAGE}/${img.url}`}
+              className="rounded-lg h-full object-cover"
+              alt={`Img title or id: ${img.title || img.id}`}
+              fill
+            />
+            {img.id}
           </div>
         ))}
-        <SubmitButton title="Add Images to Home" />
-      </form>
+      </div>
 
-      <h2>Add one more img</h2>
+      <h2>Add one more img...</h2>
       <ImageForm action={uploadUserImageAction} hiddenFieldName="userId" hiddenFieldValue={user.id} />
     </PageSection>
   );
