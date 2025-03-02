@@ -13,13 +13,13 @@ export interface IMapBoxView {
   zoom: number;
 }
 
-interface IMapBox {
+interface IMapWithDraggableMarker {
   initView: IMapBoxView;
   pin?: { lat: number; lng: number };
   coordHandler?: (pin: { lat: number; lng: number }) => void;
 }
 
-const MapBox: FC<IMapBox> = ({ initView, coordHandler }) => {
+const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHandler }) => {
   const [viewState, setViewState] = useState(initView);
   const [marker, setMarker] = useState<{ lat: number; lng: number } | null>({
     lat: initView.latitude,
@@ -79,4 +79,4 @@ const MapBox: FC<IMapBox> = ({ initView, coordHandler }) => {
   );
 };
 
-export default MapBox;
+export default MapWithDraggableMarker;

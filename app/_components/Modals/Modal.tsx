@@ -2,8 +2,7 @@
 
 import { FC, ReactElement, useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-
-import Button from "./Button";
+import { RoseButton } from "../Buttons";
 
 interface IModal {
   isOpen?: boolean;
@@ -99,9 +98,14 @@ const Modal: FC<IModal> = ({
               <div className="flex flex-col gap-2 p-6 pt-0">
                 <div className="flex flex-row items-center gap-4 w-full">
                   {secondaryAction && secondaryActionLabel && (
-                    <Button disabled={disabled} label={secondaryActionLabel} onClick={handleSecondaryAction} outline />
+                    <RoseButton
+                      disabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                      outline
+                    />
                   )}
-                  <Button disabled={disabled} label={actionLabel} onClick={handleSubmit} />
+                  <RoseButton disabled={disabled} label={actionLabel} onClick={handleSubmit} />
                 </div>
                 {footer}
               </div>

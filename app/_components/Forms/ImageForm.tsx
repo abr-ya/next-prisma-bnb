@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BottomBar } from "..";
+import { SubmitButton } from "..";
 
 interface IImageForm {
   action: (formData: FormData) => Promise<never>;
@@ -20,7 +20,7 @@ const ImageForm: FC<IImageForm> = ({ action, hiddenFieldName, hiddenFieldValue }
       </div>
     </div>
 
-    <BottomBar />
+    <SubmitButton title="Upload Image" />
   </form>
 );
 

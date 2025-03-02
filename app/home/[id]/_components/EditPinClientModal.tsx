@@ -4,6 +4,7 @@ import { FC } from "react";
 
 import EditPinModal from "@/app/_components/Modals/EditPinModal";
 import useEditPinModal from "@/app/_hooks/useEditPinModal";
+import { BlueRoundButton } from "@/app/_components/Buttons";
 
 interface IEditPinClientModal {
   homeId: string;
@@ -23,13 +24,7 @@ const EditPinClientModal: FC<IEditPinClientModal> = (props) => {
   return (
     <>
       <EditPinModal {...props} />
-      {/* ToDo common button! */}
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-        onClick={() => editPinModal.onOpen(props.homeId, init)}
-      >
-        Edit Pin
-      </button>
+      <BlueRoundButton handler={() => editPinModal.onOpen(props.homeId, init)} label="Edit Pin" />
     </>
   );
 };

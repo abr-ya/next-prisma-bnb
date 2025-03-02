@@ -7,9 +7,9 @@ import axios from "axios";
 import useEditPinModal from "@/app/_hooks/useEditPinModal";
 import { ICoord } from "@/app/_interfaces/map.interfaces";
 
-import MapBox from "../Mapbox/MapBox";
+import MapBox from "../Mapbox/MapWithDraggableMarker";
 import Modal from "./Modal";
-import Heading from "./Heading";
+import Heading from "../Heading";
 
 interface IEditPinModal {
   homeId: string;
@@ -36,7 +36,6 @@ const EditPinModal: FC<IEditPinModal> = ({ initLat, initLon, homeId }) => {
 
     console.log("save data", data, homeId);
 
-    // axios patch
     // axios patch
     axios
       .patch(`/api/home/${homeId}`, data)

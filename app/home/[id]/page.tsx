@@ -11,6 +11,7 @@ import HomeOnMap from "./_components/HomeOnMap";
 import BookingForm from "./_components/BookingForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import EditPinClientModal from "./_components/EditPinClientModal";
+import { BlueRoundButton } from "@/app/_components/Buttons";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -38,7 +39,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
     ) : (
       // todo: Add User check!
       <Link href={`${id}/edit/img`} className="w-full text-green-600">
-        Add Image (to do: button?)
+        <BlueRoundButton label="Add Image" />
       </Link>
     );
 

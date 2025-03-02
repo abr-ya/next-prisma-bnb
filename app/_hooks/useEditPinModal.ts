@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { IMapBoxView } from "../_components/Mapbox/MapBox";
+import { IMapBoxView } from "../_components/Mapbox/MapWithDraggableMarker";
 
 interface IEditPinModalStore {
   id: string;

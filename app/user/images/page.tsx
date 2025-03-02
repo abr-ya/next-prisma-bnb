@@ -25,7 +25,7 @@ const MyImages = async () => {
             <label htmlFor="scales">{id}</label>
           </div>
         ))}
-        <SubmitButton title="connect" />
+        <SubmitButton title="Add Images to Home" />
       </form>
 
       <h2>Add one more img</h2>
