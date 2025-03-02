@@ -7,8 +7,8 @@ import { Navbar } from "./_components";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
-  description: "Next 14 + Tailwind CSS App",
+  title: "Trip25 || BNB, Photos, Maps",
+  description: "Next 14 + Prisma + Tailwind + ShadcnUI Trips App",
 };
 
 const RootLayout = ({ children }: PropsWithChildren) => (
