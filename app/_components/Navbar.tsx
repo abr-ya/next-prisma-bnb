@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import UserMenu from "./UserMenu";
-import SearchModal from "./Search/SearchModal";
+import SearchDialog from "./Dialogs/SearchDialog";
 
 const Navbar = () => (
   <nav className="w-full border-b">
@@ -17,7 +17,7 @@ const Navbar = () => (
         />
         <Image src="/airbnb-mobile.webp" alt="Mobile Logo" className="block md:hidden w-12" width={1000} height={300} />
       </Link>
-      <SearchModal />
+      <SearchDialog />
       <UserMenu />
     </div>
   </nav>

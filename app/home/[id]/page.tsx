@@ -12,6 +12,7 @@ import BookingForm from "./_components/BookingForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
+import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -78,8 +79,15 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           {/* todo: Add isHost Check and real id */}
           <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
         </div>
-        {/* Reservation Form */}
-        <BookingForm booked={data?.Reservation || []} homeId={id} userId={user?.id} />
+        <div className="w-1/3">
+          {/* Reservation Form */}
+          <BookingForm booked={data?.Reservation || []} homeId={id} userId={user?.id} />
+
+          <Separator className="my-5" />
+          {/* Image Control */}
+          <ul>{data?.images.map((el) => <li key={el.url}>{el.url}</li>)}</ul>
+          <ConnectImagesDialog homeId={id} userId={user?.id} />
+        </div>
       </div>
     </div>
   );
