@@ -16,7 +16,7 @@ const ImageForm: FC<IImageForm> = ({ action, hiddenFieldName, hiddenFieldValue }
     <div className="mx-auto w-3/5 mt-10 flex flex-col gap-y-5 mb-12">
       <div className="flex flex-col gap-y-2">
         <Label>Image</Label>
-        <Input name="image" type="file" />
+        <Input name="image" type="file" required />
       </div>
     </div>
 
