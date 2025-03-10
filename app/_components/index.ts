@@ -7,6 +7,7 @@ export { default as Counter } from "./NewHome/Counter";
 export { default as CounterWithComment } from "./NewHome/CounterWithComment";
 export { default as DateRangePicker } from "./DateRangePicker";
 export { default as EmptyResult } from "./EmptyResult";
+export { default as Heading } from "./Heading";
 export { default as HomeList } from "./Home/HomeList";
 export { default as ImageForm } from "./Forms/ImageForm";
 export { default as Navbar } from "./Navbar";

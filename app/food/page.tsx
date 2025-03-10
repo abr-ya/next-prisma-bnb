@@ -1,62 +1,47 @@
-import { PageSection } from "../_components";
+import { Separator } from "@/components/ui/separator";
+import { Heading, PageSection } from "../_components";
 import { distributeProducts, getArrSum } from "./utils";
 
 const FoodPage = () => {
   // todo: => file
   const DESC = (a: number, b: number) => b - a;
 
-  // todo: => number[][]
-  const day1: number[] = [360, 430, 400, 250, 100, 540, 575, 100, 420, 180, 290];
-  const day2: number[] = [500, 260, 245, 290, 100, 400, 400, 80, 250, 100, 430, 610, 100, 40, 180, 485];
-  const day3: number[] = [410, 200, 470, 120, 100, 400, 80, 630, 375, 290, 400, 100, 570, 40, 180, 240];
-  const day4: number[] = [430, 100, 410, 245, 250, 400, 130, 470, 740, 330, 400, 390, 100, 40, 180, 290];
+  const itemsByDays: number[][] = [
+    [360, 430, 400, 250, 100, 540, 575, 100, 420, 180, 290],
+    [500, 260, 245, 290, 100, 400, 400, 80, 250, 100, 430, 610, 100, 40, 180, 485],
+    [410, 200, 470, 120, 100, 400, 80, 630, 375, 290, 400, 100, 570, 40, 180, 240],
+    [430, 100, 410, 245, 250, 400, 130, 470, 740, 330, 400, 390, 100, 40, 180, 290],
+  ];
 
   const numUsers = 5;
 
-  const result1 = distributeProducts(day1, numUsers);
-  const result2 = distributeProducts(day2, numUsers);
-  const result3 = distributeProducts(day3, numUsers);
-  const result4 = distributeProducts(day4, numUsers);
+  const packsByDays: Array<number[][]> = itemsByDays.map((day) => distributeProducts(day, numUsers));
+  console.log(packsByDays);
 
-  const day1packs = result1.map((el) => getArrSum(el)).sort(DESC);
-  const day2packs = result2.map((el) => getArrSum(el)).sort(DESC);
-  const day3packs = result3.map((el) => getArrSum(el)).sort(DESC);
-  const day4packs = result4.map((el) => getArrSum(el)).sort(DESC);
+  const packsSumByDays: Array<number[]> = packsByDays.map((dayPacks) => dayPacks.map((el) => getArrSum(el)).sort(DESC));
 
   return (
     <PageSection title="Food planning">
-      <h2>start data:</h2>
+      <Heading title="start data:" size="xl" />
       <ul>
-        <li>
-          day1 == {getArrSum(day1)}: {day1.join(" + ")}
-        </li>
-        <li>
-          day2 == {getArrSum(day2)}: {day2.join(" + ")}
-        </li>
-        <li>
-          day3 == {getArrSum(day3)}: {day3.join(" + ")}
-        </li>
-        <li>
-          day4 == {getArrSum(day4)}: {day4.join(" + ")}
-        </li>
+        {itemsByDays.map((day, i) => (
+          <li key={`day-${i}`}>
+            day {i + 1} == {getArrSum(day)}: {day.join(" + ")}
+          </li>
+        ))}
         <li>users: {numUsers}</li>
       </ul>
-      <h2>by days:</h2>
+      <Separator className="my-5" />
+      <Heading title="by days:" size="xl" />
       <ul>
-        <li>
-          day1 == {getArrSum(day1)}: {day1packs.join(" + ")}
-        </li>
-        <li>
-          day2 == {getArrSum(day2)}: {day2packs.join(" + ")}
-        </li>
-        <li>
-          day3 == {getArrSum(day3)}: {day3packs.join(" + ")}
-        </li>
-        <li>
-          day4 == {getArrSum(day3)}: {day4packs.join(" + ")}
-        </li>
+        {itemsByDays.map((day, i) => (
+          <li key={`day-${i}`}>
+            day {i + 1} == {getArrSum(day)}: {packsSumByDays[i].join(" + ")}
+          </li>
+        ))}
       </ul>
-      <h2>by users:</h2>
+      <Separator className="my-5" />
+      <Heading title="by users:" size="xl" />
       <p>todo!</p>
     </PageSection>
   );
