@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Heading, PageSection } from "../_components";
 import { distributeProducts, getArrSum, packsToUsers } from "./utils";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FoodPage = () => {
   // todo: => file
@@ -25,7 +26,7 @@ const FoodPage = () => {
 
   return (
     <PageSection title="Food planning">
-      <Heading title="start data:" size="xl" />
+      <Heading title="Set init data:" size="xl" />
       <ul>
         {itemsByDays.map((day, i) => (
           <li key={`day-${i}`}>
@@ -35,16 +36,26 @@ const FoodPage = () => {
         <li>users: {numUsers}</li>
       </ul>
       <Separator className="my-5" />
-      <Heading title="by days:" size="xl" />
-      <ul>
+      <Heading title="Create daily packs:" size="xl" />
+      <Accordion type="single" collapsible>
         {itemsByDays.map((day, i) => (
-          <li key={`day-${i}`}>
-            day {i + 1} == {getArrSum(day)}: {packsSumByDays[i].join(" + ")}
-          </li>
+          <AccordionItem value={`item-${i}`} key={`day-${i}`}>
+            <AccordionTrigger>
+              day {i + 1} == {getArrSum(day)}: {packsSumByDays[i].join(" + ")} == click for details
+            </AccordionTrigger>
+            <AccordionContent>
+              {packsByDays[i].map((pack, i) => (
+                <p key={`pack-${i}`}>
+                  {getArrSum(pack)}: {pack.join(" + ")}
+                </p>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </ul>
+      </Accordion>
+      <ul></ul>
       <Separator className="my-5" />
-      <Heading title="by users:" size="xl" />
+      <Heading title="Distribute daily packs to users:" size="xl" />
       <ul>
         {usersBags.map((user, i) => (
           <li key={`user-${i}`}>
