@@ -26,7 +26,7 @@ export const distributeProducts = (weights: number[], numBins: number) => {
 export const getArrSum = (data: number[]) => data.reduce((acc, el) => acc + el, 0);
 
 export const packsToUsers = (packs: Array<number[]>) => {
-  const usersPacks: Array<number[]> = Array.from({ length: packs.length }, () => []);
+  const usersPacks: Array<number[]> = Array.from({ length: packs[0].length }, () => []);
 
   packs.forEach((day) => {
     usersPacks.sort((a: number[], b: number[]) => getArrSum(a) - getArrSum(b));
