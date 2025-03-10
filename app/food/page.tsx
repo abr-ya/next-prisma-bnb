@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { Heading, PageSection } from "../_components";
-import { distributeProducts, getArrSum } from "./utils";
+import { distributeProducts, getArrSum, packsToUsers } from "./utils";
 
 const FoodPage = () => {
   // todo: => file
@@ -19,6 +19,9 @@ const FoodPage = () => {
   console.log(packsByDays);
 
   const packsSumByDays: Array<number[]> = packsByDays.map((dayPacks) => dayPacks.map((el) => getArrSum(el)).sort(DESC));
+
+  const usersBags = packsToUsers(packsSumByDays);
+  console.log(usersBags);
 
   return (
     <PageSection title="Food planning">
@@ -42,7 +45,13 @@ const FoodPage = () => {
       </ul>
       <Separator className="my-5" />
       <Heading title="by users:" size="xl" />
-      <p>todo!</p>
+      <ul>
+        {usersBags.map((user, i) => (
+          <li key={`user-${i}`}>
+            {user.join(" + ")} == {getArrSum(user)}
+          </li>
+        ))}
+      </ul>
     </PageSection>
   );
 };
