@@ -3,35 +3,36 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import prismaInstance from "@/app/lib/db";
 import { IHomeUpdateData } from "@/app/_interfaces/home.interfaces";
 
-interface IParams {
-  homeId?: string;
-}
+// interface IParams {
+//   homeId?: string;
+// }
 
-export async function DELETE(_request: Request, { params }: { params: IParams }) {
-  const { getUser } = getKindeServerSession();
-  const currentUser = await getUser();
+// export async function DELETE(_request: Request, { params }: { params: IParams }) {
+//   const { getUser } = getKindeServerSession();
+//   const currentUser = await getUser();
 
-  if (!currentUser.id) {
-    return NextResponse.error();
-  }
+//   if (!currentUser.id) {
+//     return NextResponse.error();
+//   }
 
-  const { homeId } = params;
+//   const { homeId } = params;
 
-  if (!homeId || typeof homeId !== "string") {
-    throw new Error("Invalid ID");
-  }
+//   if (!homeId || typeof homeId !== "string") {
+//     throw new Error("Invalid ID");
+//   }
 
-  const listing = await prismaInstance.home.deleteMany({
-    where: {
-      id: homeId,
-      userId: currentUser.id,
-    },
-  });
+//   const listing = await prismaInstance.home.deleteMany({
+//     where: {
+//       id: homeId,
+//       userId: currentUser.id,
+//     },
+//   });
 
-  return NextResponse.json(listing);
-}
+//   return NextResponse.json(listing);
+// }
 
-export async function PATCH(request: Request, { params }: { params: IParams }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function PATCH(request: Request, { params }: { params: any }) {
   const { getUser } = getKindeServerSession();
   const currentUser = await getUser();
 

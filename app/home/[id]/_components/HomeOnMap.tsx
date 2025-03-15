@@ -1,21 +1,23 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
-import dynamic from "next/dynamic";
 import { FC } from "react";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface IHomeOnMap {
   pintLat: number;
   pinLon: number;
+  zoom?: number;
 }
 
-const HomeOnMap: FC<IHomeOnMap> = ({ pintLat, pinLon }) => {
-  const LazyMap = dynamic(() => import("@/app/_components/DemoMap"), {
-    ssr: false,
-    loading: () => <Skeleton className="h-[50vh] w-full" />,
-  });
+const HomeOnMap: FC<IHomeOnMap> = ({ pintLat, pinLon, zoom = 6 }) => {
+  const loading = () => <Skeleton className="h-[200px] w-full" />;
+  const LazyMapBox = dynamic(() => import("@/app/_components/Mapbox/MapWithDraggableMarker"), { loading });
 
-  return <LazyMap latLang={[pintLat, pinLon]} />;
+  const init = { latitude: pintLat, longitude: pinLon, zoom };
+  const pin = { lat: pintLat, lng: pinLon };
+
+  return <LazyMapBox initView={init} pin={pin} isDisabled />;
 };
 
 export default HomeOnMap;

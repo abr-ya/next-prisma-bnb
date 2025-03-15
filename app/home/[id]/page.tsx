@@ -12,6 +12,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
 import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
+import HomeOnMap from "./_components/HomeOnMap";
 
 interface IHomeDetailPage {
   params: { id: string };
@@ -76,7 +77,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
 
           <Separator className="my-5" />
           {/* Map */}
-          {/* <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} /> */}
+          <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
           {/* Edit Map Modal Init Client ?! */}
           {/* todo: Add isHost Check and real id */}
           <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
