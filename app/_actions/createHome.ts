@@ -21,11 +21,11 @@ export async function createHomeAction({ userId }: { userId: string }) {
   } else {
     // todo: логика, если что-то уже записано в бд с этим id
     if (!data.hasStep1) {
-      return redirect(`/create/${data.id}/step-1`);
+      return redirect(`/new/${data.id}/step-1`);
     } else if (!data.hasStep2) {
-      return redirect(`/create/${data.id}/step-2`);
+      return redirect(`/new/${data.id}/step-2`);
     } else if (!data.hasStep3) {
-      return redirect(`/create/${data.id}/step-3`);
+      return redirect(`/new/${data.id}/step-3`);
     } // вариант, где есть все 3 - создаём новый - выше)
   }
 }
@@ -63,7 +63,7 @@ export const saveTextAction = async (formData: FormData) => {
     console.log(`ToDo: upload Image ${imageFile.name}`);
     const loadOptions = { cacheControl: "2592000", upsert: false };
     const { data, error } = await supabase.storage
-      .from(bucketName) // todo: move name to ENV
+      .from(bucketName)
       .upload(addTimeStamp(imageFile.name), imageFile, loadOptions);
     imageData = data;
     console.log("imageData", imageData);

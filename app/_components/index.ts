@@ -10,6 +10,7 @@ export { default as EmptyResult } from "./EmptyResult";
 export { default as Heading } from "./Heading";
 export { default as HomeList } from "./Home/HomeList";
 export { default as ImageForm } from "./Forms/ImageForm";
+export { default as MapBoxWithDraggableMarker } from "./Mapbox/MapWithDraggableMarker";
 export { default as Navbar } from "./Navbar";
 export { default as PageSection } from "./PageSection";
 export { default as SelectedCategory } from "./NewHome/SelectCategory";

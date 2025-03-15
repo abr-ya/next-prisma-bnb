@@ -11,16 +11,20 @@ const selectHomeFieldsForList = {
   price: true,
 };
 
-export const getHomes = async ({ searchParams, userId }: { userId?: string; searchParams?: IHomeFilters }) => {
+export const getHomes = async (params: { userId?: string; searchParams: IHomeFilters }) => {
   noStore();
+  const { searchParams, userId } = await params;
+  const { category, country, guest, room, bathroom } = await searchParams;
   const data = await prisma.home.findMany({
     where: {
-      // todo == оставить только те, где заполнены все 3 шага?
-      category: searchParams?.category ?? undefined,
-      country: searchParams?.country ?? undefined,
-      guestCount: { gte: searchParams?.guest ? Number(searchParams?.guest) : 0 },
-      roomCount: { gte: searchParams?.room ? Number(searchParams?.room) : 0 },
-      bathroomCount: { gte: searchParams?.bathroom ? Number(searchParams?.bathroom) : 0 },
+      hasStep1: true,
+      hasStep2: true,
+      hasStep3: true,
+      category: category ?? undefined,
+      country: country ?? undefined,
+      guestCount: { gte: guest ? Number(guest) : 0 },
+      roomCount: { gte: room ? Number(room) : 0 },
+      bathroomCount: { gte: bathroom ? Number(bathroom) : 0 },
     },
     select: {
       ...selectHomeFieldsForList,

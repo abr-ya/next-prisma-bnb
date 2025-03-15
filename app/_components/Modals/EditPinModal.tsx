@@ -7,7 +7,7 @@ import axios from "axios";
 import useEditPinModal from "@/app/_hooks/useEditPinModal";
 import { ICoord } from "@/app/_interfaces/map.interfaces";
 
-import MapBox from "../Mapbox/MapWithDraggableMarker";
+import MapWithDraggableMarker from "../Mapbox/MapWithDraggableMarker";
 import Modal from "./Modal";
 import Heading from "../Heading";
 
@@ -63,7 +63,7 @@ const EditPinModal: FC<IEditPinModal> = ({ initLat, initLon, homeId }) => {
     <div className="flex flex-col gap-4">
       <Heading title={title} subtitle={subtitle} />
       <div className="h-[400px]">
-        <MapBox initView={editPinModal.init} coordHandler={setCoord} pin={{ lat: 0, lng: 0 }} />
+        <MapWithDraggableMarker initView={editPinModal.init} coordHandler={setCoord} pin={{ lat: 0, lng: 0 }} />
       </div>
     </div>
   );

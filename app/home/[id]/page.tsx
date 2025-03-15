@@ -4,24 +4,24 @@ import Link from "next/link";
 
 import { getHomeDetail } from "@/app/_actions/getHome";
 import { Avatar, CategoryItem } from "@/app/_components";
-import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
-import HomeOnMap from "./_components/HomeOnMap";
 import BookingForm from "./_components/BookingForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
 import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
+import HomeOnMap from "./_components/HomeOnMap";
+import CountryBlock from "./_components/CountryBlock";
 
 interface IHomeDetailPage {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
+const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
+  const { id } = await params;
   const data = await getHomeDetail(id);
-  const { getCountryByValue } = useCountries();
-  const country = getCountryByValue(data?.country as string);
+
   console.log(data);
 
   const { getUser } = getKindeServerSession();
@@ -35,6 +35,8 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           src={`${IMG_STORAGE}/${imageSrc}`}
           fill
           className="rounded-lg h-full object-cover w-full"
+          placeholder="blur"
+          blurDataURL={`${IMG_STORAGE}/${imageSrc}`}
         />
       </div>
     ) : (
@@ -52,9 +54,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
 
       <div className="flex justify-between gap-x-24 mt-8">
         <div className="w-2/3">
-          <h3 className="text-xl font-medium">
-            {country?.flag} {country?.label} / {country?.region}
-          </h3>
+          <CountryBlock countryName={data?.country as string} />
           <div className="flex gap-x-2 text-muted-foreground">
             <p>{data?.guestCount} Guests</p> * <p>{data?.roomCount} Bedrooms</p> * {data?.bathroomCount} Bathrooms
           </div>

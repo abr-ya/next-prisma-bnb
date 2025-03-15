@@ -2,8 +2,8 @@
 
 import { FC, useRef, useState } from "react";
 import MapGL, { Marker, MarkerDragEvent } from "react-map-gl";
+import { MapMouseEvent } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { EventData, MapMouseEvent, MapboxEvent } from "mapbox-gl";
 
 const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
 
@@ -17,9 +17,10 @@ interface IMapWithDraggableMarker {
   initView: IMapBoxView;
   pin?: { lat: number; lng: number };
   coordHandler?: (pin: { lat: number; lng: number }) => void;
+  isDisabled?: boolean;
 }
 
-const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHandler }) => {
+const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHandler, isDisabled }) => {
   const [viewState, setViewState] = useState(initView);
   const [marker, setMarker] = useState<{ lat: number; lng: number } | null>({
     lat: initView.latitude,
@@ -29,19 +30,23 @@ const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHa
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
 
-  const handleClick = (evt: MapMouseEvent & EventData) => {
+  const mapClickHandler = (evt: MapMouseEvent) => {
+    if (isDisabled) return;
+
     const coord = evt.lngLat;
     if (coordHandler) coordHandler(coord);
     setMarker(coord);
   };
 
-  const dragHandler = (evt: MarkerDragEvent & EventData) => {
+  const markerDragHandler = (evt: MarkerDragEvent) => {
+    if (isDisabled) return;
+
     const coord = evt.lngLat;
     if (coordHandler) coordHandler(coord);
     setMarker(coord);
   };
 
-  const clickHandler = (evt: MapboxEvent<MouseEvent> & EventData) => {
+  const markerClickHandler = (evt: MapMouseEvent) => {
     evt.originalEvent.stopPropagation();
     console.log("click to marker");
     setMarker(null);
@@ -56,7 +61,7 @@ const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHa
         style={{ width: "100%", height: "100%" }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={MAPBOX_TOKEN}
-        onClick={(evt) => handleClick(evt)}
+        onClick={mapClickHandler}
         cursor="pointer"
         maxZoom={20}
         minZoom={3}
@@ -68,9 +73,9 @@ const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHa
               latitude={marker.lat}
               anchor="center"
               color="red"
-              draggable
-              onDragEnd={(evt) => dragHandler(evt)}
-              onClick={(evt) => clickHandler(evt)}
+              draggable={!isDisabled}
+              onDragEnd={markerDragHandler}
+              onClick={markerClickHandler}
             />
           </div>
         )}
