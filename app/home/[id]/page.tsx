@@ -7,7 +7,6 @@ import { Avatar, CategoryItem } from "@/app/_components";
 import { useCountries } from "@/app/lib/getCountries";
 import { Separator } from "@/components/ui/separator";
 import { IMG_STORAGE } from "@/app/constants";
-import HomeOnMap from "./_components/HomeOnMap";
 import BookingForm from "./_components/BookingForm";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import EditPinClientModal from "./_components/EditPinClientModal";
@@ -18,7 +17,8 @@ interface IHomeDetailPage {
   params: { id: string };
 }
 
-const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
+const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
+  const { id } = await params;
   const data = await getHomeDetail(id);
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(data?.country as string);
@@ -35,6 +35,8 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
           src={`${IMG_STORAGE}/${imageSrc}`}
           fill
           className="rounded-lg h-full object-cover w-full"
+          placeholder="blur"
+          blurDataURL={`${IMG_STORAGE}/${imageSrc}`}
         />
       </div>
     ) : (
@@ -74,7 +76,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params: { id } }) => {
 
           <Separator className="my-5" />
           {/* Map */}
-          <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
+          {/* <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} /> */}
           {/* Edit Map Modal Init Client ?! */}
           {/* todo: Add isHost Check and real id */}
           <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />

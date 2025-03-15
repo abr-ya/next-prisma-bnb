@@ -14,6 +14,8 @@ const Navbar = () => (
           className="w-32 hidden md:block"
           width={1000}
           height={300}
+          placeholder="blur"
+          blurDataURL="/airbnb-desktop.png"
         />
         <Image src="/airbnb-mobile.webp" alt="Mobile Logo" className="block md:hidden w-12" width={1000} height={300} />
       </Link>
