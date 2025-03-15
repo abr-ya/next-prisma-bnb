@@ -16,17 +16,21 @@ const MyImages = async () => {
 
   return (
     <PageSection title="My Images">
-      <p>{JSON.stringify(data)}</p>
       <div className="flex flex-wrap gap-x-[4%]">
         {data.map((img) => (
-          <div className="w-[22%] my-4 p-2 relative h-[150px]" key={img.id}>
-            <Image
-              src={`${IMG_STORAGE}/${img.url}`}
-              className="rounded-lg h-full object-cover"
-              alt={`Img title or id: ${img.title || img.id}`}
-              fill
-            />
-            {img.id}
+          <div className="flex flex-col w-[22%] my-4 p-2" key={img.id}>
+            <div className="relative h-[150px]">
+              <Image
+                src={`${IMG_STORAGE}/${img.url}`}
+                className="rounded-lg h-full object-cover"
+                alt={`Img title or id: ${img.title || img.id}`}
+                fill
+                sizes="25vw"
+                placeholder="blur"
+                blurDataURL={`${IMG_STORAGE}/${img.url}`}
+              />
+            </div>
+            <div>{img.id}</div>
           </div>
         ))}
       </div>

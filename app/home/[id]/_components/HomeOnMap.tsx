@@ -17,7 +17,11 @@ const HomeOnMap: FC<IHomeOnMap> = ({ pintLat, pinLon, zoom = 6 }) => {
   const init = { latitude: pintLat, longitude: pinLon, zoom };
   const pin = { lat: pintLat, lng: pinLon };
 
-  return <LazyMapBox initView={init} pin={pin} isDisabled />;
+  return (
+    <div className="h-[500px]">
+      <LazyMapBox initView={init} pin={pin} isDisabled />
+    </div>
+  );
 };
 
 export default HomeOnMap;

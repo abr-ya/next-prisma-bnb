@@ -21,17 +21,20 @@ const ConnectImagesFormWithData: FC<IConnectImagesFormWithData> = async ({ homeI
         {data
           .filter((el) => !el.homeId)
           .map((img) => (
-            <div className="w-[31%] my-4 p-2 relative h-[150px] " key={img.id}>
-              <label className="cursor-pointer">
+            <label className="cursor-pointer contents" key={img.id}>
+              <div className="w-[31%] my-4 p-2 h-[150px] relative">
                 <input className="absolute z-[100]" type="checkbox" id={img.id} name="images" value={img.id} />
                 <Image
                   src={`${IMG_STORAGE}/${img.url}`}
+                  placeholder="blur"
+                  blurDataURL={`${IMG_STORAGE}/${img.url}`}
                   className="rounded-lg h-full object-cover"
                   alt={`Img title or id: ${img.title || img.id}`}
                   fill
+                  sizes="(max-width: 1200px) 50vw, 33vw"
                 />
-              </label>
-            </div>
+              </div>
+            </label>
           ))}
       </div>
       {/* {data

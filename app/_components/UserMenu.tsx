@@ -34,7 +34,7 @@ const UserMenu = async () => {
       <DropdownMenuContent align="end" className="w-[200px]">
         {user ? (
           <>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               {userId ? (
                 <form className="w-full" action={startHomeCreating}>
                   <button type="submit" className="w-full text-start">
@@ -45,33 +45,33 @@ const UserMenu = async () => {
                 <>Disabled == not UserID</>
               )}
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/user" className="w-full">
                 About Me
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/user/homes" className="w-full">
                 My Homes
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/user/favorites" className="w-full">
                 My Favorites
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/user/bookings" className="w-full">
                 My Bookings
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/user/images" className="w-full">
                 My Images
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <LogoutLink className="w-full">Logout</LogoutLink>
             </DropdownMenuItem>
           </>
