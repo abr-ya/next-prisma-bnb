@@ -16,7 +16,7 @@ interface IHomeCard {
 
 const HomeCard: FC<IHomeCard> = ({
   currentPath,
-  data: { id, description, country, imageSrc, price, Favorite, ...restDate },
+  data: { id, description, country, imageSrc, price, Favorite, ...restData },
   userId,
 }) => {
   const { getCountryByValue } = useCountries();
@@ -26,10 +26,10 @@ const HomeCard: FC<IHomeCard> = ({
   let isBookingCard = false;
   let from;
   // let to;
-  if ("from" in restDate) {
+  if ("from" in restData) {
     isBookingCard = true;
-    from = restDate.from.toDateString();
-    // to = restDate.to.toDateString();
+    from = restData.from.toDateString();
+    // to = restData.to.toDateString();
   }
 
   const renderImgBlock = (imageSrc: string | null) =>
