@@ -44,7 +44,7 @@ const HomeCard: FC<IHomeCard> = ({
         sizes="(max-width: 1200px) 50vw, 33vw"
       />
     ) : (
-      <>Img wasn't loaded yet...</>
+      <>Img wasn&apos;t loaded yet...</>
     );
 
   return (

@@ -4,7 +4,7 @@ import { saveCategoryAction } from "@/app/_actions/createHome";
 import Header from "../Header";
 
 interface IStep1Page {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const Step1Page: FC<IStep1Page> = async ({ params }) => {

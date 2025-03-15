@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Header from "../Header";
 
 interface IStep2Page {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const Step2Page: FC<IStep2Page> = async ({ params }) => {

@@ -7,7 +7,7 @@ import { IHomeFilters } from "./_interfaces/home.interfaces";
 
 // to use Suspense on Wrapper!
 const GetItemsContainer = async (params: { searchParams: IHomeFilters }) => {
-  const { searchParams } = await params;
+  const { searchParams } = params;
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
@@ -16,14 +16,14 @@ const GetItemsContainer = async (params: { searchParams: IHomeFilters }) => {
   return <HomeList data={homes} userId={user?.id} currentPath="/" />;
 };
 
-const Home = async (params: { searchParams: IHomeFilters }) => {
+const Home = async (params: { searchParams: Promise<IHomeFilters> }) => {
   const { searchParams } = await params;
 
   return (
     <div className="container mx-auto px-5 lg:px-10">
       <CategoryFilter />
       <Suspense fallback={<SkeletonList />}>
-        <GetItemsContainer searchParams={searchParams} />
+        <GetItemsContainer searchParams={searchParams as IHomeFilters} />
       </Suspense>
     </div>
   );

@@ -2,7 +2,7 @@ import { FC } from "react";
 import Step3Client from "./_components/Step3Client";
 
 interface IStep3Page {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const Step3Page: FC<IStep3Page> = async ({ params }) => {
