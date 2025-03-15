@@ -34,9 +34,17 @@ const HomeCard: FC<IHomeCard> = ({
 
   const renderImgBlock = (imageSrc: string | null) =>
     imageSrc ? (
-      <Image src={`${IMG_STORAGE}/${imageSrc}`} alt="Image of House" fill className="rounded-lg h-full object-cover" />
+      <Image
+        src={`${IMG_STORAGE}/${imageSrc}`}
+        placeholder="blur"
+        blurDataURL={`${IMG_STORAGE}/${imageSrc}`}
+        alt="Image of House"
+        className="rounded-lg h-full object-cover"
+        fill
+        sizes="(max-width: 1200px) 50vw, 33vw"
+      />
     ) : (
-      <>.....</>
+      <>Img wasn't loaded yet...</>
     );
 
   return (

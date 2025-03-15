@@ -2,8 +2,8 @@
 
 import { FC, useRef, useState } from "react";
 import MapGL, { Marker, MarkerDragEvent } from "react-map-gl";
+import { MapMouseEvent } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { EventData, MapMouseEvent, MapboxEvent } from "mapbox-gl";
 
 const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
 
@@ -29,19 +29,19 @@ const MapWithDraggableMarker: FC<IMapWithDraggableMarker> = ({ initView, coordHa
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
 
-  const handleClick = (evt: MapMouseEvent & EventData) => {
+  const handleClick = (evt: MapMouseEvent) => {
     const coord = evt.lngLat;
     if (coordHandler) coordHandler(coord);
     setMarker(coord);
   };
 
-  const dragHandler = (evt: MarkerDragEvent & EventData) => {
+  const dragHandler = (evt: MarkerDragEvent) => {
     const coord = evt.lngLat;
     if (coordHandler) coordHandler(coord);
     setMarker(coord);
   };
 
-  const clickHandler = (evt: MapboxEvent<MouseEvent> & EventData) => {
+  const clickHandler = (evt: MapMouseEvent) => {
     evt.originalEvent.stopPropagation();
     console.log("click to marker");
     setMarker(null);
