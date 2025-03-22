@@ -9,6 +9,7 @@ import { BookingForm, CountryBlock, HomeOnMap, ImagesBlock } from "./_components
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
 import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
+import { IImageData } from "@/app/_interfaces/home.interfaces";
 
 interface IHomeDetailPage {
   params: Promise<{ id: string }>;
@@ -25,7 +26,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
 
   const renderImgBlock = (imageSrc: string | null | undefined) =>
     imageSrc ? (
-      <ImagesBlock mainImg={imageSrc} images={[]} />
+      <ImagesBlock mainImg={imageSrc} images={(data?.images as IImageData[]).slice(0, 4)} />
     ) : (
       // todo: Add User check!
       <Link href={`${id}/edit/img`} className="w-full text-green-600">
