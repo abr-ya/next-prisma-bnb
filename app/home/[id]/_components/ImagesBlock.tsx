@@ -12,25 +12,34 @@ const ImagesBlock: FC<IImagesBlock> = ({ mainImg, images }) => {
   const hasRightBlock = images.length >= 4;
   console.log(hasRightBlock);
 
+  const roundedMain = hasRightBlock ? "rounded-l-lg" : "rounded-lg";
+
   const mainImage = (
     <Image
       alt="Image of Home"
       src={`${IMG_STORAGE}/${mainImg}`}
       fill
-      className="rounded-lg h-full object-cover w-full"
+      className={`h-full object-cover w-full ${roundedMain}`}
       placeholder="blur"
       blurDataURL={`${IMG_STORAGE}/${mainImg}`}
     />
   );
 
-  const imgCards = images.map((imgItem) => (
-    <div key={imgItem.id} className="flex w-full h-[240px] relative">
+  const getRounded = (i: number) => {
+    if (i === 2) return "rounded-tr-lg";
+    if (i === 3) return "rounded-br-lg";
+
+    return "rounded-none";
+  };
+
+  const imgCards = images.map(({ id, url }, i) => (
+    <div key={id} className="flex w-full h-[240px] relative">
       <Image
         alt="Image of Home"
-        src={`${IMG_STORAGE}/${imgItem.url}`}
-        className="rounded-lg h-full object-cover w-full"
+        src={`${IMG_STORAGE}/${url}`}
+        className={`h-full object-cover w-full ${getRounded(i)}`}
         placeholder="blur"
-        blurDataURL={`${IMG_STORAGE}/${imgItem.url}`}
+        blurDataURL={`${IMG_STORAGE}/${url}`}
         fill
       />
     </div>

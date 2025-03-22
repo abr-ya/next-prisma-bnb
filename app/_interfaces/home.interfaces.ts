@@ -21,7 +21,7 @@ export interface IHome {
   description: string;
   country: string;
   imageSrc: string | null;
-  images: IImageData[];
+  images?: IImageData[];
   price: number;
   Favorite: Array<IFavourite>;
   likeId?: string;
