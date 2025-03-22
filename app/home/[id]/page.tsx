@@ -1,18 +1,14 @@
 import { FC } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
+import { Separator } from "@/components/ui/separator";
 import { getHomeDetail } from "@/app/_actions/getHome";
 import { Avatar, CategoryItem } from "@/app/_components";
-import { Separator } from "@/components/ui/separator";
-import { IMG_STORAGE } from "@/app/constants";
-import BookingForm from "./_components/BookingForm";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { BookingForm, CountryBlock, HomeOnMap, ImagesBlock } from "./_components";
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
 import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
-import HomeOnMap from "./_components/HomeOnMap";
-import CountryBlock from "./_components/CountryBlock";
 
 interface IHomeDetailPage {
   params: Promise<{ id: string }>;
@@ -29,16 +25,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
 
   const renderImgBlock = (imageSrc: string | null | undefined) =>
     imageSrc ? (
-      <div className="relative h-[550px]">
-        <Image
-          alt="Image of Home"
-          src={`${IMG_STORAGE}/${imageSrc}`}
-          fill
-          className="rounded-lg h-full object-cover w-full"
-          placeholder="blur"
-          blurDataURL={`${IMG_STORAGE}/${imageSrc}`}
-        />
-      </div>
+      <ImagesBlock mainImg={imageSrc} images={[]} />
     ) : (
       // todo: Add User check!
       <Link href={`${id}/edit/img`} className="w-full text-green-600">
@@ -76,7 +63,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
           {/* Map */}
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
           {/* Edit Map Modal Init Client ?! */}
-          {/* todo: Add isHost Check and real id */}
+          {/* todo: Add isHost Check */}
           <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
         </div>
         <div className="w-1/3">
