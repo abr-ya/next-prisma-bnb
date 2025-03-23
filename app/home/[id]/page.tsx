@@ -5,7 +5,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Separator } from "@/components/ui/separator";
 import { getHomeDetail } from "@/app/_actions/getHome";
 import { Avatar, CategoryItem } from "@/app/_components";
-import { BookingForm, CountryBlock, HomeOnMap, ImagesBlock } from "./_components";
+import { BookingForm, CountryBlock, HomeOnMap, HostRender, ImagesBlock } from "./_components";
 import EditPinClientModal from "./_components/EditPinClientModal";
 import { BlueRoundButton } from "@/app/_components/Buttons";
 import ConnectImagesDialog from "@/app/_components/Dialogs/ConnectImagesDialog";
@@ -24,14 +24,17 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
+  const isHost = user?.id === data?.User?.id;
+
   const renderImgBlock = (imageSrc: string | null | undefined) =>
     imageSrc ? (
       <ImagesBlock mainImg={imageSrc} images={(data?.images as IImageData[]).slice(0, 4)} />
     ) : (
-      // todo: Add User check!
-      <Link href={`${id}/edit/img`} className="w-full text-green-600">
-        <BlueRoundButton label="Add Image" />
-      </Link>
+      <HostRender isHost={isHost}>
+        <Link href={`${id}/edit/img`} className="w-full text-green-600">
+          <BlueRoundButton label="Add Image" />
+        </Link>
+      </HostRender>
     );
 
   return (
@@ -63,9 +66,10 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
           <Separator className="my-5" />
           {/* Map */}
           <HomeOnMap pintLat={data?.pinLat || 0} pinLon={data?.pinLon || 0} />
-          {/* Edit Map Modal Init Client ?! */}
-          {/* todo: Add isHost Check */}
-          <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
+          {/* Edit Map Modal Init Client */}
+          <HostRender isHost={isHost}>
+            <EditPinClientModal initLat={data?.pinLat || 0} initLon={data?.pinLon || 0} homeId={id} />
+          </HostRender>
         </div>
         <div className="w-1/3">
           {/* Reservation Form */}
@@ -74,7 +78,9 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
           <Separator className="my-5" />
           {/* Image Control */}
           <ul>{data?.images.map((el) => <li key={el.url}>{el.url}</li>)}</ul>
-          <ConnectImagesDialog homeId={id} userId={user?.id} />
+          <HostRender isHost={isHost}>
+            <ConnectImagesDialog homeId={id} userId={user?.id} />
+          </HostRender>
         </div>
       </div>
     </div>

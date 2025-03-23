@@ -91,6 +91,7 @@ export const getHomeDetail = async (id: string) => {
       },
       User: {
         select: {
+          id: true,
           profileImage: true,
           firstName: true,
         },
