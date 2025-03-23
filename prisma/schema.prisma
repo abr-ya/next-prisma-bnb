@@ -25,6 +25,9 @@ model User {
   Favorite     Favorite[]
   Reservation  Reservation[]
   images       Image[]
+  pins         Pin[]
+  tripsAdmin   Trip[]
+  tripsMember  Trip[] @relation(name: "tripsMember")
 }
 
 model Home {
@@ -90,6 +93,8 @@ model Tag {
   userId String
 
   images   Image[]
+  trips    Trip[]
+  pins     Pin[]
 }
 
 model Folder {
@@ -117,6 +122,52 @@ model Image {
 
   homeId String?
   home Home? @relation(fields: [homeId], references: [id])
+
+  tripId String?
+  trip Trip? @relation(fields: [tripId], references: [id])
+
+  pin Pin?
+
+  createAt DateTime @default(now())
+}
+
+model Pin {
+  id String @id @default(uuid())
+
+  title String
+  userId String
+  user User @relation(fields: [userId], references: [id])
+
+  tags Tag[]
+
+  tripId String? @unique
+  trip Trip? @relation(fields: [tripId], references: [id])
+
+  imageId String? @unique
+  image Image? @relation(fields: [imageId], references: [id])
+
+  date DateTime?
+
+  createAt DateTime @default(now())  
+}
+
+// add Trips for new data structure == 23.03.2025
+model Trip {
+  id String @id @default(uuid())
+
+  title String
+  description String?
+
+  adminId String
+  admin User @relation(fields: [adminId], references: [id])
+  members User[] @relation(name: "tripsMember")
+
+  tags Tag[]
+  pins Pin[]
+  images Image[]
+
+  dateStart DateTime
+  dateEnd DateTime
 
   createAt DateTime @default(now())
 }
