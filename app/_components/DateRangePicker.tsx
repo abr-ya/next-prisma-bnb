@@ -11,10 +11,11 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { IDateRange } from "../_interfaces/booking.interfaces";
 
 interface IDateRangePicker {
+  isBooking?: boolean;
   reservation: IDateRange[];
 }
 
-const DateRangePicker: FC<IDateRangePicker> = ({ reservation }) => {
+const DateRangePicker: FC<IDateRangePicker> = ({ isBooking, reservation }) => {
   const [state, setState] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -40,7 +41,7 @@ const DateRangePicker: FC<IDateRangePicker> = ({ reservation }) => {
         rangeColors={["#FF5A5F"]}
         ranges={[state]}
         onChange={(item) => setState(item.selection)}
-        minDate={new Date()}
+        minDate={isBooking ? new Date() : undefined}
         direction="vertical"
         disabledDates={disabledDates}
         locale={usLocale}

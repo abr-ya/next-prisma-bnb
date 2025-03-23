@@ -16,7 +16,7 @@ const BookingForm: FC<IBookingForm> = ({ booked, homeId, userId }) => (
     <input type="hidden" name="homeId" value={homeId} />
     <input type="hidden" name="userId" value={userId} />
 
-    <DateRangePicker reservation={booked} />
+    <DateRangePicker reservation={booked} isBooking />
 
     {userId ? (
       <SubmitButton title="Booking Now!" />

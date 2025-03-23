@@ -11,7 +11,7 @@ const selectHomeFieldsForList = {
   price: true,
 };
 
-export const getHomes = async (params: { userId?: string; searchParams: IHomeFilters }) => {
+export const findHomes = async (params: { userId?: string; searchParams: IHomeFilters }) => {
   noStore();
   const { searchParams, userId } = await params;
   const { category, country, guest, room, bathroom } = await searchParams;
