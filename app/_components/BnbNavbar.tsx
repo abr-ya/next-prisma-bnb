@@ -4,7 +4,7 @@ import Link from "next/link";
 import UserMenu from "./UserMenu";
 import SearchDialog from "./Dialogs/SearchDialog";
 
-const Navbar = () => (
+const BnbNavbar = () => (
   <nav className="w-full border-b">
     <div className="flex items-center justify-between container mx-auto px-5 lg:px-10 py-5">
       <Link href="/">
@@ -25,4 +25,4 @@ const Navbar = () => (
   </nav>
 );
 
-export default Navbar;
+export default BnbNavbar;

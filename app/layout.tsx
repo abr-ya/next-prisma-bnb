@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
-import { Navbar } from "./_components";
+import { BnbNavbar } from "./_components";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,20 +18,22 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Trip25 || BNB, Photos, Maps",
-  description: "Next 14 + Prisma + Tailwind + ShadcnUI Trips App",
+  description: "Next 15 + Prisma + Tailwind + ShadcnUI Trips App",
 };
 
-const RootLayout = ({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => (
-  <html lang="en" suppressHydrationWarning>
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <Navbar />
-      {children}
-    </body>
-  </html>
-);
+}>) => {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <BnbNavbar />
+        {children}
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;

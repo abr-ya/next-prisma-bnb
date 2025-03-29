@@ -70,6 +70,11 @@ const UserMenu = async () => {
                 My Images
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/resumes" className="w-full">
+                My Resumes
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <LogoutLink className="w-full">Logout</LogoutLink>
