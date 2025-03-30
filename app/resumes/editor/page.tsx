@@ -1,7 +1,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Metadata } from "next";
 
-import ClientResumeEditor from "./_components/ClientResumeEditor";
+import ClientResumeEditor from "./ClientResumeEditor";
 
 interface IEditorPage {
   searchParams: Promise<{ resumeId?: string }>;
