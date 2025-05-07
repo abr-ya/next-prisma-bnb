@@ -26,7 +26,7 @@ const ClientResumeEditor = () => {
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
           <div className="w-full space-y-6 overflow-y-auto p-3 md:block md:w-1/2">
-            <EditorBreadcrumbs />
+            <EditorBreadcrumbs currentStep={currentStep} goToStep={goToStep} />
             <ResumeForm stepKey={currentStep} resumeData={resumeData} setResumeData={setResumeData} />
           </div>
           <div className="grow md:border-r" />
