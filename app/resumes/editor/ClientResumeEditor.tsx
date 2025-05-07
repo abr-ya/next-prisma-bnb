@@ -31,7 +31,7 @@ const ClientResumeEditor = () => {
           </div>
           <div className="grow md:border-r" />
           <div className="group relative hidden w-full md:flex md:w-1/2">
-            <ResumePreview />
+            <ResumePreview data={resumeData} />
           </div>
         </div>
       </main>
