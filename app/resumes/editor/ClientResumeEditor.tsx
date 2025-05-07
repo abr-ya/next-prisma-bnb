@@ -12,6 +12,12 @@ const ClientResumeEditor = () => {
   const searchParams = useSearchParams();
   const currentStep = searchParams.get("step") || steps[0].key;
 
+  const goToStep = (key: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("step", key);
+    window.history.pushState(null, "", `?${newSearchParams.toString()}`);
+  };
+
   const [resumeData, setResumeData] = useState<ResumeValuesType>({ title: "" });
 
   return (
@@ -29,7 +35,7 @@ const ClientResumeEditor = () => {
           </div>
         </div>
       </main>
-      <EditorFooter />
+      <EditorFooter currentStep={currentStep} goToStep={goToStep} />
     </div>
   );
 };
