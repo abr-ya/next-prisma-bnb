@@ -171,3 +171,52 @@ model Trip {
 
   createAt DateTime @default(now())
 }
+
+
+// Srart Resume part
+model Resume {
+  id     String @id @default(cuid())
+  userId String
+
+  title       String?
+  description String?
+
+  photoUrl    String?
+  colorHex    String  @default("#000000")
+  borderStyle String  @default("squircle")
+  summary     String?
+  firstName   String?
+  lastName    String?
+  jobTitle    String?
+  city        String?
+  country     String?
+  phone       String?
+  email       String?
+
+  workExperiences WorkExperience[]
+  skills          String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("resumes")
+}
+
+model WorkExperience {
+  id String @id @default(cuid())
+
+  position    String?
+  company     String?
+  date1start  DateTime?
+  date2end    DateTime?
+  description String?
+
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("work_experiences")
+}
+// End Resume part
