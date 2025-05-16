@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { IEditorForm, personalInfoSchema, PersonalInfoValues } from "@/zod/resume.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from "@/components/index";
+import { IEditorForm, personalInfoSchema, PersonalInfoValues } from "@/zod/resume.schema";
 
 const Step2PersonalInfoForm = ({ resumeData, setResumeData }: IEditorForm) => {
   const form = useForm<PersonalInfoValues>({

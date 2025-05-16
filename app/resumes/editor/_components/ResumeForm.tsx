@@ -2,6 +2,7 @@ import { IEditorForm } from "@/zod/resume.schema";
 import { ComponentType, FC } from "react";
 import { Step1GeneralInfoForm } from ".";
 import Step2PersonalInfoForm from "./Step2PersonalInfoForm";
+import Step3WorkExperienceForm from "./Step3WorkExperienceForm";
 
 interface IResumeForm extends IEditorForm {
   stepKey: string;
@@ -21,7 +22,7 @@ const ResumeForm: FC<IResumeForm> = ({ stepKey, ...props }) => {
       CurrentForm = Step2PersonalInfoForm;
       break;
     case "work-experience":
-      CurrentForm = null;
+      CurrentForm = Step3WorkExperienceForm;
       break;
     case "education":
       CurrentForm = null;

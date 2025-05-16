@@ -28,11 +28,29 @@ export const personalInfoSchema = z.object({
 
 export type PersonalInfoValues = z.infer<typeof personalInfoSchema>;
 
+export const workExperienceSchema = z.object({
+  workExperiences: z
+    .array(
+      z.object({
+        position: optionalString,
+        company: optionalString,
+        startDate: optionalString,
+        endDate: optionalString,
+        description: optionalString,
+      }),
+    )
+    .optional(),
+});
+
+export type WorkExperienceValues = z.infer<typeof workExperienceSchema>;
+
+export type WorkExperience = NonNullable<z.infer<typeof workExperienceSchema>["workExperiences"]>[number];
+
 export const resumeSchema = z.object({
   ...generalInfoSchema.shape,
   ...personalInfoSchema.shape,
+  ...workExperienceSchema.shape,
   // todo
-  // ...workExperienceSchema.shape,
   // ...educationSchema.shape,
   // ...skillsSchema.shape,
   // ...summarySchema.shape,
