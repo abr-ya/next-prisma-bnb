@@ -1,5 +1,6 @@
-import { IEditorForm } from "@/zod/resume.schema";
 import { ComponentType, FC } from "react";
+
+import { IEditorForm } from "@/zod/resume.schema";
 import {
   Step1GeneralInfoForm,
   Step2PersonalInfoForm,

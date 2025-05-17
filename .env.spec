@@ -15,3 +15,4 @@ SUPABASE_KEY="string"
 SUPA_BUCKET_NAME="string"
 
 MAPBOX_TOKEN="string"
+AI_KEY="string"
