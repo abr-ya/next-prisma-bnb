@@ -20,7 +20,6 @@ const Step3WorkExperienceForm = ({ resumeData, setResumeData }: IEditorForm) => 
     const asyncValidationAndSave = async () => {
       const isValid = await trigger();
       const newExperiences = (workExperiences || []).slice(0);
-      console.log(newExperiences);
       // @ts-expect-error prev?!
       if (isValid) setResumeData((prev) => ({ ...prev, workExperiences: newExperiences }));
     };

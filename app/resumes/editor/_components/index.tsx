@@ -4,3 +4,8 @@ export { default as EditorFooter } from "./EditorFooter";
 export { default as ResumeForm } from "./ResumeForm";
 export { default as ResumePreview } from "./ResumePreview";
 export { default as Step1GeneralInfoForm } from "./Step1GeneralInfoForm";
+export { default as Step2PersonalInfoForm } from "./Step2PersonalInfoForm";
+export { default as Step3WorkExperienceForm } from "./Step3WorkExperienceForm";
+export { default as Step4EducationForm } from "./Step4EducationForm";
+export { default as Step5SkillsForm } from "./Step5SkillsForm";
+export { default as Step6SummaryForm } from "./Step6SummaryForm";

@@ -30,7 +30,6 @@ const Step2PersonalInfoForm = ({ resumeData, setResumeData }: IEditorForm) => {
       // @ts-expect-error prev?!
       if (isValid) setResumeData((prev) => ({ ...prev, firstName, lastName, email }));
     };
-    console.log(firstName, lastName, email, photo);
     asyncValidationAndSave();
   }, [firstName, lastName, email, photo, form, setResumeData]);
 

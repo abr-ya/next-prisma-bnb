@@ -194,6 +194,7 @@ model Resume {
   email       String?
 
   workExperiences WorkExperience[]
+  education       Education[]
   skills          String[]
 
   createdAt DateTime @default(now())
@@ -218,5 +219,22 @@ model WorkExperience {
   updatedAt DateTime @updatedAt
 
   @@map("work_experiences")
+}
+
+model Education {
+  id String @id @default(cuid())
+
+  degree    String?
+  school    String?
+  startDate DateTime?
+  endDate   DateTime?
+
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("educations")
 }
 // End Resume part

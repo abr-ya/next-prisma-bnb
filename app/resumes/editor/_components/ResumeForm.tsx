@@ -1,15 +1,19 @@
 import { IEditorForm } from "@/zod/resume.schema";
 import { ComponentType, FC } from "react";
-import { Step1GeneralInfoForm } from ".";
-import Step2PersonalInfoForm from "./Step2PersonalInfoForm";
-import Step3WorkExperienceForm from "./Step3WorkExperienceForm";
+import {
+  Step1GeneralInfoForm,
+  Step2PersonalInfoForm,
+  Step3WorkExperienceForm,
+  Step4EducationForm,
+  Step5SkillsForm,
+  Step6SummaryForm,
+} from ".";
 
 interface IResumeForm extends IEditorForm {
   stepKey: string;
 }
 
 const ResumeForm: FC<IResumeForm> = ({ stepKey, ...props }) => {
-  console.log("ResumeForm", stepKey);
   let CurrentForm: ComponentType<IEditorForm> | null;
 
   const EmptyComponent = () => <p>Error key or component not finished yet...</p>;
@@ -25,13 +29,13 @@ const ResumeForm: FC<IResumeForm> = ({ stepKey, ...props }) => {
       CurrentForm = Step3WorkExperienceForm;
       break;
     case "education":
-      CurrentForm = null;
+      CurrentForm = Step4EducationForm;
       break;
     case "skills":
-      CurrentForm = null;
+      CurrentForm = Step5SkillsForm;
       break;
     case "summary":
-      CurrentForm = null;
+      CurrentForm = Step6SummaryForm;
       break;
     default:
       CurrentForm = null;
