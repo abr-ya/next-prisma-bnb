@@ -28,7 +28,7 @@ const Step2PersonalInfoForm = ({ resumeData, setResumeData }: IEditorForm) => {
     const asyncValidationAndSave = async () => {
       const isValid = await form.trigger();
       // @ts-expect-error prev?!
-      if (isValid) setResumeData((prev) => ({ ...prev, firstName, lastName, email }));
+      if (isValid) setResumeData((prev) => ({ ...prev, firstName, lastName, email, photo }));
     };
     asyncValidationAndSave();
   }, [firstName, lastName, email, photo, form, setResumeData]);
