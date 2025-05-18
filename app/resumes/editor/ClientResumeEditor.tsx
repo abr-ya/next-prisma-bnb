@@ -5,7 +5,14 @@ import { useSearchParams } from "next/navigation";
 
 import { ResumeValuesType } from "@/zod/resume.schema";
 
-import { EditorBreadcrumbs, EditorFooter, EditorHeader, ResumeForm, ResumePreview } from "./_components/";
+import {
+  EditorBreadcrumbs,
+  EditorFooter,
+  EditorHeader,
+  ResumeForm,
+  ResumePreview,
+  ResumeStyling,
+} from "./_components/index";
 import { steps } from "./steps";
 
 const ClientResumeEditor = () => {
@@ -31,6 +38,7 @@ const ClientResumeEditor = () => {
           </div>
           <div className="grow md:border-r" />
           <div className="group relative hidden w-full md:flex md:w-1/2">
+            <ResumeStyling data={resumeData} setData={setResumeData} />
             <ResumePreview data={resumeData} />
           </div>
         </div>

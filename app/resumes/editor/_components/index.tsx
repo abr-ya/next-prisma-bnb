@@ -3,6 +3,7 @@ export { default as EditorHeader } from "./EditorHeader";
 export { default as EditorFooter } from "./EditorFooter";
 export { default as ResumeForm } from "./ResumeForm";
 export { default as ResumePreview } from "./ResumePreview";
+export { default as ResumeStyling } from "./ResumeStyling";
 export { default as Step1GeneralInfoForm } from "./Step1GeneralInfoForm";
 export { default as Step2PersonalInfoForm } from "./Step2PersonalInfoForm";
 export { default as Step3WorkExperienceForm } from "./Step3WorkExperienceForm";
