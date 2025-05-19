@@ -1,4 +1,3 @@
-// todo: check this way!
 export { Button } from "./ui/button";
 export { Card, CardHeader } from "./ui/card";
 export * from "./ui/form";

@@ -26,7 +26,8 @@ const ResumePreview: FC<IResumePreview> = ({ data }) => {
         {/* with zoom! */}
         <div className={cn("space-y-6 p-6", !width && "invisible")} style={{ zoom: (1 / PxIn210mm) * width }}>
           <PersonalInfoHeader data={data} />
-          <SummarySection data={data} />
+          {/* todo: types! */}
+          <SummarySection color={data.colorHex as string} summary={data.summary} />
           <WorkExperienceSection data={data} />
           <EducationSection data={data} />
           <SkillsSection data={data} />
