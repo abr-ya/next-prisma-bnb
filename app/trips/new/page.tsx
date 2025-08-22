@@ -21,7 +21,7 @@ const NewTripPage: FC = async () => {
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Descrption</Label>
-          <Textarea name="description" placeholder="Please describe your home..." />
+          <Textarea name="description" placeholder="Please describe your trip..." />
         </div>
         <div className="flex flex-col gap-y-2 w-[330px]">
           <Label>Descrption</Label>

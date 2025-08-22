@@ -10,17 +10,18 @@ export const createTrip = async (formData: FormData) => {
   const startDate = formData.get("startDate") as string;
   const endDate = formData.get("endDate") as string;
 
-  const data = await prisma.trip.create({
-    data: {
-      title,
-      description,
-      adminId: userId,
-      dateStart: startDate,
-      dateEnd: endDate,
-    },
-  });
+  const data = {
+    title,
+    description,
+    adminId: userId,
+    dateStart: startDate,
+    dateEnd: endDate,
+  };
 
-  console.log("created!", data);
+  console.log(data);
+  const createdData = await prisma.trip.create({ data });
+
+  console.log("created!", createdData);
 
   return redirect("/trips");
 };
