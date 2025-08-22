@@ -77,7 +77,7 @@ const HomeDetailPage: FC<IHomeDetailPage> = async ({ params }) => {
 
           <Separator className="my-5" />
           {/* Image Control */}
-          <ul>{data?.images.map((el) => <li key={el.url}>{el.url}</li>)}</ul>
+          <ul>{data?.images.map((el: IImageData) => <li key={el.url}>{el.url}</li>)}</ul>
           <HostRender isHost={isHost}>
             <ConnectImagesDialog homeId={id} userId={user?.id} />
           </HostRender>
