@@ -15,3 +15,6 @@ export { default as BnbNavbar } from "./BnbNavbar";
 export { default as PageSection } from "./PageSection";
 export { default as SelectedCategory } from "./NewHome/SelectCategory";
 export { default as SkeletonList } from "./SkeletonList";
+
+// Trips
+export { default as TripList } from "./Trip/TripList";
