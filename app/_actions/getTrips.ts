@@ -36,6 +36,14 @@ export const getTripDetail = async (id: string) => {
           firstName: true,
         },
       },
+      pins: {
+        select: {
+          id: true,
+          title: true,
+          pinLat: true,
+          pinLon: true,
+        },
+      },
     },
   });
 

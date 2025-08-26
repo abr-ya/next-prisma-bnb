@@ -33,6 +33,7 @@ export async function POST(request: Request) {
 
   console.log("createPinWithData:", data);
 
+  // todo: not connect if tripId is not valid! how?!
   const created = await prismaInstance.pin.create({
     data: {
       title: data.title,
@@ -50,11 +51,6 @@ export async function POST(request: Request) {
       },
     },
   });
-
-  // const updated = await prismaInstance.home.update({
-  //   where: { id: homeId },
-  //   data,
-  // });
 
   return NextResponse.json(created);
 }
