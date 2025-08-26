@@ -21,3 +21,23 @@ export const getTripsByUser = async (userId: string) => {
 
   return data;
 };
+
+export const getTripDetail = async (id: string) => {
+  noStore();
+  const data = await prisma.trip.findUnique({
+    where: { id },
+    select: {
+      title: true,
+      description: true,
+      admin: {
+        select: {
+          id: true,
+          profileImage: true,
+          firstName: true,
+        },
+      },
+    },
+  });
+
+  return data;
+};

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 
 interface ITripListProps {
@@ -15,7 +16,9 @@ const TripList: FC<ITripListProps> = ({ trips }) => {
       <h2>Trip List</h2>
       <ul>
         {trips.map((trip) => (
-          <li key={trip.id}>Trip: {trip.title}</li>
+          <Link href={`/trips/${trip.id}`} key={trip.id}>
+            <li>Trip: {trip.title}</li>
+          </Link>
         ))}
       </ul>
     </div>
