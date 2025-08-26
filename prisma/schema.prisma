@@ -135,6 +135,9 @@ model Pin {
   id String @id @default(uuid())
 
   title String
+  pinLat       Float @default(0)
+  pinLon       Float @default(0)
+
   userId String
   user User @relation(fields: [userId], references: [id])
 
