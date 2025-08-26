@@ -1,6 +1,6 @@
 export { default as Avatar } from "./Avatar";
 export { default as BottomBar } from "./NewHome/BottomBar";
-export { SubmitButton } from "./Buttons";
+export { BlueRoundButton, SubmitButton } from "./Buttons";
 export { default as CategoryFilter } from "./CategoryFilter";
 export { default as CategoryItem } from "./CategoryItem";
 export { default as Counter } from "./NewHome/Counter";
@@ -15,6 +15,9 @@ export { default as BnbNavbar } from "./BnbNavbar";
 export { default as PageSection } from "./PageSection";
 export { default as SelectedCategory } from "./NewHome/SelectCategory";
 export { default as SkeletonList } from "./SkeletonList";
+
+// Modals
+export { default as AddPinToTripModal } from "./Modals/AddPinToTripModal";
 
 // Trips
 export { default as TripList } from "./Trip/TripList";
