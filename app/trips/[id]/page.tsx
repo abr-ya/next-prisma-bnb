@@ -1,6 +1,8 @@
 import { getTripDetail } from "@/app/_actions/getTrips";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { FC } from "react";
+import PinsOverviewMap from "@/app/_components/Mapbox/PinsOverviewMap";
+
 import AddPinModalAndButton from "./_components/AddPinModalAndButton";
 
 interface ITripDetailPage {
@@ -23,7 +25,7 @@ const TripDetailPage: FC<ITripDetailPage> = async ({ params }) => {
     <div className="w-[75%] mx-auto mt-10 mb-12">
       <h1 className="font-medium text-2xl mb-5">Trip detail: {data?.title}</h1>
       <p>{data?.description}</p>
-      {/* todo: Add County Coordinates = Tags ? */}
+      <PinsOverviewMap pins={data?.pins ?? []} className="mt-8" height={420} />
       <AddPinModalAndButton initLat={0} initLon={0} tripID={id} />
     </div>
   );
