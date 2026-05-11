@@ -7,13 +7,15 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint \"./app/**/*.{js,ts,tsx}\" --quiet",
+    "lint:staged": "lint-staged",
     "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix",
     "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix",
     "postinstall": "prisma generate",
     "tsc": "tsc --noEmit",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:resolve:baseline": "prisma migrate resolve --applied 20260511150000_prod_baseline",
-    "db:migrate:resolve:pin-unique": "prisma migrate resolve --applied 20260511153000_pin_trip_title_unique"
+    "db:migrate:resolve:pin-unique": "prisma migrate resolve --applied 20260511153000_pin_trip_title_unique",
+    "prepare": "husky"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -69,11 +71,16 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "prisma": "^6.4.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "resolutions": {}
+  "resolutions": {},
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --quiet"
+  }
 }
