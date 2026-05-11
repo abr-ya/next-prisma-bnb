@@ -25,8 +25,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const { title, pinLat, pinLon, tripId } = body;
 
-  const normalizedTitle =
-    typeof title === "string" && title.trim().length > 0 ? title.trim() : "New Pin";
+  const normalizedTitle = typeof title === "string" && title.trim().length > 0 ? title.trim() : "New Pin";
 
   const data: INewPinParams = {
     title: normalizedTitle,
@@ -57,18 +56,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json(created);
   } catch (e: unknown) {
-    if (
-      e instanceof Prisma.PrismaClientKnownRequestError &&
-      e.code === "P2002" &&
-      Array.isArray(e.meta?.target)
-    ) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002" && Array.isArray(e.meta?.target)) {
       const targets = e.meta.target as string[];
       if (targets.includes("tripId") && targets.includes("title")) {
         return NextResponse.json(
           {
             error: {
               code: "PIN_TITLE_NOT_UNIQUE",
-              message: "На этом трипе уже есть точка с таким именем. Выберите другое название.",
+              message: "A pin with this name already exists on this trip. Please choose another name.",
             },
           },
           { status: 409 },

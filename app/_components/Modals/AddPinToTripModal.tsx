@@ -64,7 +64,7 @@ const AddPinToTripModal: FC<IAddPinToTripModal> = ({ initLat = 0, initLon = 0 })
           if (msg) {
             form.setError("title", { type: "server", message: msg });
           }
-          toast.error(msg ?? "Не удалось сохранить точку.");
+          toast.error(msg ?? "Could not save the pin.");
           return;
         }
         toast.error("Something went wrong.");

@@ -1,6 +1,9 @@
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const useDimensions = (containerRef: RefObject<HTMLElement>) => {
+/** Structural typing avoids RefObject<> variance issues between HTMLDivElement and HTMLElement (React 19). */
+type ElementSizeRef = { readonly current: HTMLElement | null };
+
+const useDimensions = (containerRef: ElementSizeRef) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
