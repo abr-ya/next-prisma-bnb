@@ -2,8 +2,11 @@
 
 import { FC } from "react";
 
+// Import modules directly instead of `_components/index` so the client bundle only pulls these
+// files. The barrel re-exports many components and can confuse the server/client split or webpack chunking.
+import { BlueRoundButton } from "@/app/_components/Buttons";
+import AddPinToTripModal from "@/app/_components/Modals/AddPinToTripModal";
 import useEditPinModal from "@/app/_hooks/useEditPinModal";
-import { AddPinToTripModal, BlueRoundButton } from "@/app/_components/index";
 
 interface IAddPinModalAndButton {
   initLat?: number;

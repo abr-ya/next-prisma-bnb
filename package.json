@@ -10,7 +10,10 @@
     "fix": "eslint \"./app/**/*.{js,ts,tsx}\" --fix",
     "fix-cmp": "eslint \"./components/**/*.{js,ts,tsx}\" --fix",
     "postinstall": "prisma generate",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:resolve:baseline": "prisma migrate resolve --applied 20260511150000_prod_baseline",
+    "db:migrate:resolve:pin-unique": "prisma migrate resolve --applied 20260511153000_pin_trip_title_unique"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

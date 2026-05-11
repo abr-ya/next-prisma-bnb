@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "sonner";
 
 import "./globals.css";
 import { BnbNavbar } from "./_components";
+import SonnerToaster from "./_components/SonnerToaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ const RootLayout = async ({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <BnbNavbar />
         {children}
-        <Toaster richColors position="top-center" />
+        <SonnerToaster />
       </body>
     </html>
   );

@@ -151,7 +151,9 @@ model Pin {
 
   date DateTime?
 
-  createAt DateTime @default(now())  
+  createAt DateTime @default(now())
+
+  @@unique([tripId, title])
 }
 
 // add Trips for new data structure == 23.03.2025
