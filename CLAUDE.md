@@ -99,6 +99,57 @@ lib/                   # Additional utilities
 public/                # Static assets
 ```
 
+## Database Schema (Prisma)
+
+### Core Models
+- **User** - User accounts (Kinde ID-based)
+  - Relations: homes, favorites, reservations, images, pins, trips (admin/member)
+  
+- **Home** - Property listings
+  - Fields: title, description, price, category, location (lat/lon), room counts
+  - Multi-step creation flow (hasStep1/2/3)
+  - Relations: favorites, reservations, images, user
+  
+- **Reservation** - Booking records
+  - Fields: startDate, endDate
+  - Relations: user, home
+  
+- **Favorite** - User's favorited homes
+  - Relations: user, home
+
+### Trip Planning Models
+- **Trip** - Travel itineraries (added 2025-03-23)
+  - Fields: title, description, dateStart, dateEnd
+  - Relations: admin (user), members (users), tags, pins, images
+  
+- **Pin** - Location markers on trips
+  - Fields: title, pinLat, pinLon, date
+  - Unique constraint: [tripId, title]
+  - Relations: user, trip, tags, image
+  
+- **Image** - Photo storage
+  - Fields: url (unique), title
+  - Relations: user, tags, folder, home, trip, pin
+  
+- **Tag** - Categorization system
+  - Relations: images, trips, pins
+  
+- **Folder** - Image organization
+  - Fields: title, userId, parentId
+  - Relations: images
+
+### Resume Builder Models
+- **Resume** - CV/Resume data
+  - Fields: personal info, photo, styling (colorHex, borderStyle)
+  - Relations: workExperiences, education
+  - Skills stored as String[]
+  
+- **WorkExperience** - Job history
+  - Cascade delete with resume
+  
+- **Education** - Academic history
+  - Cascade delete with resume
+
 ## Environment Variables
 
 Required variables (see `.env.spec`):
@@ -174,3 +225,11 @@ yarn db:migrate:resolve:pin-unique      # Resolve pin uniqueness migration
 - **Auth Flow** - Kinde handles OAuth, redirects configured
 - **Map Resilience** - Mapbox primary with English error UX fallback
 
+## Recent Changes (from git history)
+
+- 2026-05-11: Added Husky pre-commit hooks with lint-staged
+- 2026-05-11: Prisma Migrate adoption with baseline
+- 2026-05-11: Pin title uniqueness constraint per trip
+- 2026-05-11: Trips overview map with Mapbox + resilient error handling
+- 2026-05-11: React 19 RefObject compatibility fix for useDimensions
+- 2026-05-11: Pin name form with Zod validation and Sonner toasts
