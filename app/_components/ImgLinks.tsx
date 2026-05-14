@@ -26,6 +26,17 @@ const ImgLinks = () => (
         blurDataURL="/trips-desktop.jpg"
       />
     </Link>
+    <Link href="/resumes">
+      <Image
+        src="/resume-desktop.png"
+        alt="Resumes"
+        className="w-32 hidden md:block"
+        width={674}
+        height={240}
+        placeholder="blur"
+        blurDataURL="/resume-desktop.png"
+      />
+    </Link>
   </div>
 );
 
