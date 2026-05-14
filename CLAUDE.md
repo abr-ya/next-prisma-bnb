@@ -46,6 +46,8 @@ Full-stack travel planning and accommodation booking application built with Next
 - **Prettier 3.2** - Code formatting
 - **Husky 9.1** - Git hooks
 - **lint-staged 16.4** - Pre-commit linting
+- **Vitest 4.1** - Fast unit testing framework
+- **React Testing Library 16.3** - Component testing utilities
 
 ## Project Structure
 
@@ -191,6 +193,12 @@ yarn fix              # Fix app directory
 yarn fix-cmp          # Fix components directory
 yarn tsc              # Type check
 
+# Testing
+yarn test             # Run tests in watch mode
+yarn test:run         # Run tests once
+yarn test:ui          # Run tests with UI interface
+yarn test:coverage    # Run tests with coverage report
+
 # Database
 yarn postinstall                        # Auto-generate Prisma client
 yarn db:migrate:deploy                  # Deploy migrations
@@ -203,6 +211,25 @@ yarn db:migrate:resolve:pin-unique      # Resolve pin uniqueness migration
 **Pre-commit** (Husky + lint-staged):
 - Runs ESLint on staged `.js`, `.jsx`, `.ts`, `.tsx` files
 - Configured in `package.json` lint-staged section
+
+## Testing
+
+The project uses **Vitest** with **React Testing Library** for component testing.
+
+### Configuration
+- **Framework**: Vitest 4.1 with jsdom environment
+- **Testing Library**: React Testing Library 16.3 with jest-dom matchers
+- **Config**: `vitest.config.ts` - React plugin, path aliases, globals enabled
+- **Setup**: `vitest.setup.ts` - imports jest-dom matchers
+
+### Test Location
+Tests are colocated with components using `.test.tsx` extension (e.g., `ImgLinks.test.tsx` next to `ImgLinks.tsx`)
+
+### Running Tests
+- `yarn test` - Watch mode
+- `yarn test:run` - Single run (CI/CD)
+- `yarn test:ui` - Interactive UI
+- `yarn test:coverage` - Coverage report
 
 ## Key Features
 
